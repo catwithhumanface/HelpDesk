@@ -1,38 +1,91 @@
-<?php require 'shared/header.php' ?>
+<?php require_once 'shared/header.php' ?>
 
-<?php if (!empty($this->msgError)): ?>
-    <p class="error"><?=$this->msgError?></p>
-<?php endif ?>
+<!-- content -->
+<div class="content">
+	<div class="container">
+	 <div class="load_more">
+		<div class="row">
 
-<?php if (!empty($this->msgSuccess)): ?>
-    <p class="success"><?=$this->msgSuccess?></p>
-<?php endif ?>
+            <div class="col-lg-8 col-lg-offset-2">
 
-<?php if (empty($this->post)): ?>
-    <p class="error">This post has no data... Which is kinda impossible. Stop trying to break the website please >.<  </p>
-<?php else: ?>
+                <h1>Edit</h1>
 
-    <form action="" method="post">
-        <p><label for="title">Title:*</label><br />
-			<input type="text" name="title" id="title" required="required" />
-			<small>Title needs to be a maximum of 50 characters</small>
-		</p>
+                <?php if (!empty($this->msgError)): ?>
+					<p class="help-block with-errors"><?=$this->msgError?></p>
+				<?php endif ?>
 
-		
-		<p><label for="small_desc">Small description:*</label><br />
-			<textarea name="small_desc" id="small_desc" rows="5" cols="35" required="required"></textarea>
-		</p>
+				<?php if (!empty($this->msgSuccess)): ?>
+					<b><p class="help-block with-errors"><?=$this->msgSuccess?></p></b>
+				<?php endif ?>
 
-		<p><label for="content">Content:*</label><br />
-			<textarea name="content" id="content" rows="5" cols="35" required="required"></textarea>
-		</p>
-		
-		<p><label for="author">Author:*</label><br />
-			<input type="text" name="author" id="author" required="required" />
-		</p>
+				<?php if (empty($this->post)): ?>
+					<p class="help-block with-errors">This post has no data... Which is kinda impossible. Stop trying to break the website please >.<  </p>
+				<?php else: ?>
 
-        <p><input type="submit" name="edit_submit" value="Update" /></p>
-    </form>
-<?php endif ?>
 
-<?php require 'shared/footer.php' ?>
+                <form id="contact-form" method="post" action="" role="form">
+
+                    <div class="messages"></div>
+
+                    <div class="controls">
+						
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="title">Title * </label>
+                                    <input id="title" type="text" name="title" class="form-control" placeholder="Update title *" required="required" data-error="The title is required.">
+                                    <div class="help-block with-errors"></div>
+									<small> Title needs to be a maximum of 50 characters</small>
+                                </div>
+                            </div>
+						</div>
+						<div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="author">Author *</label>
+                                    <input id="author" type="text" name="author" class="form-control" placeholder="Update author's name *" required="required" data-error="Author is required.">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="small_desc">Small description *</label>
+                                    <textarea id="small_desc" name="small_desc" class="form-control" placeholder="Update description. Make it short and on point. *" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="content">Content *</label>
+                                    <textarea id="content" name="content" class="form-control" placeholder="Update content *" rows="4" required="required" data-error="Kindly write your post's content"></textarea>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="submit" name="edit_submit" class="btn btn-success btn-send" value="Update">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="text-muted"><strong>*</strong> These fields are required.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+						
+				<?php endif ?>
+
+            </div>
+
+        </div>
+	 </div>
+	</div>
+</div>
+<!-- content -->	
+
+<?php require_once 'shared/footer.php' ?>
