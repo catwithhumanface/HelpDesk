@@ -17,7 +17,7 @@
 								 This blog was created by Islam Elshobokshy using the MVC architecture of the OOP PHP and Bootstrap for a nice and clean code all the way to the front-end. <br/> 
 								 As for the theme, I used the elegant theme MINIMA. <br/> 
 								 The code of the website is on GitHub as an opensource project. <br/>
-								 You can check my CV here : <a href="islamelshobokshy.info/Islam_Elshobokshy_CV.pdf">Islam ELSHOBOKSHY's Curriculum Vitae</a><br/>
+								 You can check my CV here : <a href="http://islamelshobokshy.info/Islam_Elshobokshy_CV.pdf">Islam ELSHOBOKSHY's Curriculum Vitae</a><br/>
 								<center> <a href="https://github.com/elshobokshy" target='_blank'><i class="fa fa-github fa-4x"></i></a> &emsp; 
 										 <a href="https://www.linkedin.com/in/islam-elshobokshy/" target='_blank'><i class="fa fa-linkedin-square fa-4x"></i></a> &emsp; 
 										<a href="https://www.facebook.com/IslamElshobokshy" target='_blank'><i class="fa fa-facebook-square fa-4x"></i></a> 
