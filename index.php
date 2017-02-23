@@ -17,12 +17,13 @@ if(isset($_SERVER["HTTPS"])&& strtolower($_SERVER["HTTPS"]) == "on" ) {
 define('PROTOCOL', $protocol);
 // Removing backslashes for Windows compatibility
 define('ROOT_URL', PROTOCOL . $_SERVER['HTTP_HOST'] . str_replace('\\', '', dirname(htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES))) . '/'); 
+define('ROOT_HOME', str_replace('\\', '', dirname(htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES))) . '/'); 
 define('ROOT_PATH', __DIR__ . '/');
 
 
 try {
-    require ROOT_PATH . 'App/Autoloader.php';
-    App\Autoloader::init(); // Load necessary classes
+    require ROOT_PATH . 'app/Autoloader.php';
+    app\Autoloader::init(); // Load necessary classes
 	
 	if(!empty($_GET['p'])) {
 		$controller = $_GET['p'];
@@ -40,7 +41,7 @@ try {
 		'ctrl' => $controller, 
 		'act' => $action
 	];
-    App\Router::run($params);
+    app\Router::run($params);
 	
 } catch (\Exception $e) {
     echo $e->getMessage();

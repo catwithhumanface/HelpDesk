@@ -6,9 +6,9 @@ namespace BlogPHP\App;
 class Router {
     public static function run (array $params) {
 		
-        $namespace = 'BlogPHP\Controller\\';
+        $namespace = 'BlogPHP\controller\\';
         $controllerDef = $namespace . 'BlogController';
-        $controllerPath = ROOT_PATH . 'Controller/';
+        $controllerPath = ROOT_PATH . 'controller/';
         $controller = ucfirst($params['ctrl']);
 		
         if (is_file($controllerPath . $controller . '.php')) {

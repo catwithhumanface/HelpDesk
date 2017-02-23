@@ -14,7 +14,7 @@
 						<div class="col-md-8 biography-into">
 							<h4>ISLAM ELSHOBOKSHY</h4>
 							<p>I love writing code and I am really passionate about it. <br/> 
-								 This blog was created by me using the MVC architecture of the OOP PHP and Twig as the templating theme for a nice and clean code all the way to the front-end. <br/> 
+								 This blog was created by Islam Elshobokshy using the MVC architecture of the OOP PHP and Bootstrap for a nice and clean code all the way to the front-end. <br/> 
 								 As for the theme, I used the elegant theme MINIMA. <br/> 
 								 The code of the website is on GitHub as an opensource project. <br/>
 								 You can check my CV here : <a href="islamelshobokshy.info/Islam_Elshobokshy_CV.pdf">Islam ELSHOBOKSHY's Curriculum Vitae</a><br/>
@@ -42,14 +42,35 @@
 								</address>
 						</div>
 						<div class="col-md-6 contact-info">
-							<form>
-								<input type="text" name="your name" value="NAME" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'NAME';}">				
-								<input type="text" name="your email" value="EMAIL" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'EMAIL';}">
-								<textarea cols="70" rows="5" name="message" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'MESSAGE';}" >MESSAGE </textarea>
+							<form action="content/contact_me.php" method="post" name="contact_form">
+								<div class="form-group">
+								  <label class="col-md-12 control-label" for="text">Name</label>  
+								  <div class="col-md-12">
+									<input id="name" name="name" type="text" placeholder="Please enter your name." class="form-control input-md" required="">
+									
+								  </div>
+								</div>
+								<div class="form-group">
+								  <label class="col-md-12 control-label" for="email">Email</label>  
+								  <div class="col-md-12">
+								  <input id="email" name="email" type="email" placeholder="Please enter your email adress." class="form-control input-md" required="">
+									
+								  </div>
+								</div>
+								<div class="form-group">
+								  <label class="col-md-12 control-label" for="message">Message</label>  
+								  <div class="col-md-12">
+								  <textarea id="message" name="message" placeholder="Please enter your message" class="form-control input-md" required=""></textarea>
+								  </div>
+								</div>
+								<div class="form-group">
+								  <label class="col-md-12 control-label" for="singlebutton"></label>
+								  <div class="col-md-12">
+									<button id="singlebutton" name="singlebutton" class="btn btn-default" type="submit">Send</button>
+								  </div>
+								</div>	
 								<div class="clearfix"> </div>
-								<input type="submit"value="SEND" />
-								
-							</form>					
+							</form>
 						</div>
 						<div class="clearfix"> </div>
 					</div>

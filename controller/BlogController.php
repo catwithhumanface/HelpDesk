@@ -8,10 +8,10 @@ class BlogController {
 	
 	
     public function __construct() {
-        $this->manager = new \BlogPHP\App\BlogManager;
+        $this->manager = new \BlogPHP\app\BlogManager;
         // Get the Model class in order for it to be used directly in all of this Controller
         $this->manager->getModel('Post');
-        $this->model = new \BlogPHP\Model\Post;
+        $this->model = new \BlogPHP\model\Post;
         // The ID of the post directly in the constructor
 		if(empty($_GET['id'])){
 			$this->id = 0;

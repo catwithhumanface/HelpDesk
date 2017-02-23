@@ -6,7 +6,7 @@ class BlogManager
 {
     public function getView($view)
     {
-		$path = ROOT_PATH . 'View/' . $view . '.php';
+		$path = ROOT_PATH . 'view/' . $view . '.php';
         if (is_file($path)) {
             require $path;
 		} else {
@@ -15,7 +15,7 @@ class BlogManager
     }
     public function getModel($model)
     {
-		$path = ROOT_PATH . 'Model/' . $model . '.php';
+		$path = ROOT_PATH . 'model/' . $model . '.php';
         if (is_file($path)){
             require $path;
 		} else {

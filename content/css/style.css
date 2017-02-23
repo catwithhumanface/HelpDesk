@@ -695,7 +695,7 @@ a.b-home:hover{
 .contact-info form {
 	padding: 1em 0;
 }
-.contact-info input[type="text"] {
+.contact-info input[type="text"], input[type="email"]  {
 	border: none;
 	outline: none;
 	border: 1px solid #999;
@@ -703,7 +703,7 @@ a.b-home:hover{
 	width: 95%;
 	margin-bottom: 0.5em;
 }
-.contact-info input[type="text"]:hover {
+.contact-info input[type="text"]:hover, input[type="email"]:hover {
 	border: 1px solid #dc8e7f;
 }
 .contact-info textarea {
