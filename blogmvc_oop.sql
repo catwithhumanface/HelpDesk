@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS posts (
   small_desc text NOT NULL,
   content longtext NOT NULL,
   author varchar(255) NOT NULL,
-  date datetime NOT NULL DEFAULT NOW(),
+  date timestamp NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
