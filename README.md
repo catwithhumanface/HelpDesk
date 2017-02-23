@@ -39,6 +39,7 @@ Here I'll be explaining how to setup the project on your localhost ! But please 
 * Step 1 : Fork this project or download it as a zip and extract it in Wamp (or MAMP)
 * Step 2 : Create a database called 'blogMVC_OOP' and import into it the sql file called 'blogMVC_OOP.sql'
 * Step 3 : In \App\Database.php, change the database's host/name/password to yours
+* Step 4 : To change the contact's form sending email address please open \content\contact_me.php and in line 18 and 21 change the email addess to yours. **Also, please not that that the contact form will NOT work on localhost as it has no STMP mailing servers installed. You need to have the site up and running in a server in order for it to work.**
 
 ## Author
 Islam Elshobokshy - http://islamelshobokshy.info
