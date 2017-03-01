@@ -66,5 +66,19 @@ class Post {
         $query->bindParam(':postId', $id, \PDO::PARAM_INT);
         return $query->execute();
     }
+
+    //Authentication
+    public function getAuthentication($username, $password) {
+        $query = $this->db_connection->prepare('SELECT username, password FROM users WHERE username = :usr');
+        $query->bindParam(':usr', $username, \PDO::PARAM_STR);
+        $query->execute();
+        //Password hashing tutorial : http://www.ibm.com/developerworks/library/wa-php-renewed_2/index.html
+        //Password verify doc : http://php.net/manual/en/function.password-verify.php
+        //Here, as the blog won't have a login, we won't use password_hash, only password verify to get the credentials from the database
+        $queryRequest = $query->fetch(\PDO::FETCH_OBJ);
+        if($queryRequest) {
+            return password_verify($password, $queryRequest->password);
+        }
+    }
 	
 }

@@ -11,15 +11,15 @@
                 <h1>Add a new blog post</h1>
 
                 <?php if (!empty($this->msgError)): ?>
-					<p class="help-block with-errors"><?=$this->msgError?></p>
+					<p class="msg"><?=$this->msgError?></p>
 				<?php endif ?>
 
 				<?php if (!empty($this->msgSuccess)): ?>
-					<p class="help-block with-errors"><?=$this->msgSuccess?></p>
+					<p class="msg"><?=$this->msgSuccess?></p>
 				<?php endif ?>
 
 
-                <form id="contact-form" method="post" action="" role="form">
+                <form method="post" action="" role="form">
 
                     <div class="messages"></div>
 

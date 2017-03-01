@@ -52,8 +52,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<ul class="cl-effect-15">
 							<li><a href="<?=ROOT_URL?>">HOME</a></li>
 							<li><a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts" data-hover="BLOG">BLOG</a></li>
-							<li><a href="<?=ROOT_URL?>?p=blogController&amp;a=add" data-hover="ADD A NEW POST">ADD A NEW POST</a></li>
-								<div class="clearfix"> </div>
+                            <?php if(empty($_SESSION['active'])): ?>
+                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=login" data-hover="LOGIN">LOGIN</a></li>
+                            <?php elseif(!empty($_SESSION['active'])) : ?>
+                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=add" data-hover="ADD A NEW POST">ADD A NEW POST</a></li>
+                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=logout" data-hover="LOGOUT">LOGOUT</a></li>
+                            <?php endif ?>
+                            <div class="clearfix"> </div>
 						</ul>
 				</div>
 

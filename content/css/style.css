@@ -1066,6 +1066,13 @@ ul.links li.last {
 	button.addFirstPost {
 		color: red;
 	}
+	p.msg{
+		color: red;
+		font-style: bold;
+	}
+	h2.addFirstPost, p.addFirstPost{
+		color: red;
+	}
 }
 /*-- responsive-mediaquries --*/
 @media(max-width:1366px){

@@ -18,6 +18,10 @@ class BlogController {
 		} else {
 			$this->id = (int) $_GET['id']; // The cast is used to double check that the id is indeed an integer
 		}
+		//Creation of the session as soon as the website loads
+        if (empty($_SESSION)) {
+            session_start();
+        }
     }
 	
 	public function home() {
@@ -44,13 +48,21 @@ class BlogController {
 	
     public function add() {
         if (!empty($_POST['add_submit'])) { // Making sure that the sumbit button is coming from the add.php page (containing the add_submit button) {
-            if (isset($_POST['title'], $_POST['small_desc'], $_POST['content'], $_POST['author']) && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['small_desc']) && !empty($_POST['content']) && !empty($_POST['author'])) { // Allow a maximum of 50 characters {
-                if(!ctype_space($_POST['title']) && !ctype_space($_POST['small_desc']) && !ctype_space($_POST['content']) && !ctype_space($_POST['author'])) {
-					$data = array('title' => htmlspecialchars($_POST['title']), 'small_desc' => htmlspecialchars($_POST['small_desc']), 'content' => htmlspecialchars($_POST['content']), 'author' => htmlspecialchars($_POST['author']));
-					if ($this->model->add($data)) {
-						$this->manager->msgSuccess = 'The post was added with success.';
+            if (isset($_POST['title'], $_POST['small_desc'], $_POST['content'], $_POST['author']) && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['small_desc']) && !empty($_POST['content']) && !empty($_POST['author'])) { // Allow a maximum of 50 characters and making sure the input we get is not empty (a bit equal to required="required" in the HTML form, but who trusts HTML anyways? :D)
+                if(!ctype_space($_POST['title']) && !ctype_space($_POST['small_desc']) && !ctype_space($_POST['content']) && !ctype_space($_POST['author'])) { // Making sure there's a contact in the input we got that is not all full spaces
+					if(mb_strlen($_POST['title']) >= 3 && mb_strlen($_POST['small_desc']) >= 3 && mb_strlen($_POST['content']) >= 3 && mb_strlen($_POST['author']) >= 3) { // Making sure each input is more than 3 characters
+						if(preg_match('/\s/',$_POST['small_desc']) >= 1 && preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
+							$data = array('title' => htmlspecialchars($_POST['title']), 'small_desc' => htmlspecialchars($_POST['small_desc']), 'content' => htmlspecialchars($_POST['content']), 'author' => htmlspecialchars($_POST['author']));
+							if ($this->model->add($data)) {
+								$this->manager->msgSuccess = 'The post was added with success.';
+							} else {
+								$this->manager->msgError = 'An error has occured. Please contact the site admin.';
+							}
+						} else {
+							$this->manager->msgError = 'The small description and/or content can\'t be consisted of only 1 word. 2 words minimum.';
+						}
 					} else {
-						$this->manager->msgError = 'An error has occured. Please contact the site admin.';
+						$this->manager->msgError = 'Minimum 3 letters required for each field.';
 					}
 				} else {
 					$this->manager->msgError = 'Please don\'t fill any of the fields with blank spaces.';
@@ -69,13 +81,22 @@ class BlogController {
         if (!empty($_POST['edit_submit'])) { // Making sure that the sumbit button is coming from the edit.php page (containing the edit_submit button)
             if (isset($_POST['title'], $_POST['small_desc'], $_POST['content'], $_POST['author']) && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['small_desc']) && !empty($_POST['content']) && !empty($_POST['author'])) {
 				if(!ctype_space($_POST['title']) && !ctype_space($_POST['small_desc']) && !ctype_space($_POST['content']) && !ctype_space($_POST['author'])) {
-					$data = array('postId' => $this->id, 'title' => htmlspecialchars($_POST['title']), 'small_desc' => htmlspecialchars($_POST['small_desc']), 'content' => htmlspecialchars($_POST['content']), 'author' => htmlspecialchars($_POST['author']) );
-					if ($this->model->update($data)) {
-						$this->manager->msgSuccess = 'The post was updated with success.';
+					if(mb_strlen($_POST['title']) >= 3 && mb_strlen($_POST['small_desc']) >= 3 && mb_strlen($_POST['content']) >= 3 && mb_strlen($_POST['author']) >= 3) {
+					    if(preg_match('/\s/',$_POST['small_desc']) >= 1 && preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
+							$data = array('postId' => $this->id, 'title' => htmlspecialchars($_POST['title']), 'small_desc' => htmlspecialchars($_POST['small_desc']), 'content' => htmlspecialchars($_POST['content']), 'author' => htmlspecialchars($_POST['author']) );
+							if ($this->model->update($data)) {
+								$this->manager->msgSuccess = 'The post was updated with success.';
+							}
+							else {
+								$this->manager->msgError = 'An error has occured. Please contact the site admin.';
+							}
+						} else {
+							$this->manager->msgError = 'The small description and/or content can\'t be consisted of only 1 word. 2 words minimum.';
+						}
+					} else {
+						$this->manager->msgError = 'Minimum 3 letters required.';
 					}
-					else {
-						$this->manager->msgError = 'An error has occured. Please contact the site admin.';
-					}
+					
 				} else {
 					$this->manager->msgError = 'Please don\'t fill any of the fields with blank spaces.';
 				}
@@ -99,5 +120,35 @@ class BlogController {
         else {
             exit('Whoops! Post cannot be deleted.');
 		}
+    }
+
+    public function login() {
+        if (!empty($_SESSION)) {
+            header('Location: ' . ROOT_URL);
+            exit();
+        } else if (isset($_POST['username'], $_POST['password'])) {
+            if($this->model->getAuthentication($_POST['username'], $_POST['password'])) {
+                session_start();
+                $_SESSION['active'] = $_POST['username'];
+                header('Location: ' . ROOT_URL);
+                exit();
+            } else {
+                $this->manager->msgError = 'Your login credentials are incorrect. Please try again later.';
+            }
+        }
+        $this->manager->getView('login');
+    }
+
+    public function logout() {
+        if (empty($_SESSION)) {
+            header('Location: ' . ROOT_URL);
+            exit();
+        } else if (!empty($_SESSION)) {
+            $_SESSION = array();
+            session_unset($_SESSION);
+            session_destroy();
+            setcookie(session_name(),'',0,'/');
+        }
+        $this->manager->getView('logout');
     }
 }

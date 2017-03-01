@@ -16,12 +16,17 @@
 				<li><a href="#"><i class="admin"> </i><span class="icon_text"><?=$this->post->author?></span></a></li>
 			</ul>
 			<br/><br/>
-			<a href="<?=ROOT_URL?>?p=blogController&amp;a=edit&amp;id=<?=$this->post->id?>" class="link">Edit</a>
-			<form name="delete" action="<?=ROOT_URL?>?p=blogController&amp;a=delete&amp;id=<?=$this->post->id?>" method="post" class="link">
-				<button type="submit" name="delete" value="1" class="bold">
-					Delete
-				</button>
-			</form>		
+            <!-- If user is not logged in -->
+            <?php if(!empty($_SESSION['active'])) : ?>
+                <a href="<?=ROOT_URL?>?p=blogController&amp;a=edit&amp;id=<?=$this->post->id?>" class="link">Edit</a>
+                <form name="delete" action="<?=ROOT_URL?>?p=blogController&amp;a=delete&amp;id=<?=$this->post->id?>" method="post" class="link">
+                    <button type="submit" name="delete" value="1" class="bold">
+                        Delete
+                    </button>
+                </form>
+            <?php elseif(empty($_SESSION['active'])) : ?>
+                <p class="addFirstPost">Please <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">login</a> to edit/delete.</p>
+            <?php endif ?>
 		</div>
 	</div>
 	

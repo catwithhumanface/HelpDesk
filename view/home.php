@@ -4,7 +4,7 @@
 <div class="content">
 	<div class="container">
 	 <div class="load_more">	
-				<h3></h2>
+				<h3></h3>
 				 
 				<div class="biography">
 					<div class="biographys">

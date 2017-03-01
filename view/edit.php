@@ -11,19 +11,19 @@
                 <h1>Edit</h1>
 
                 <?php if (!empty($this->msgError)): ?>
-					<p class="help-block with-errors"><?=$this->msgError?></p>
+					<p class="msg"><?=$this->msgError?></p>
 				<?php endif ?>
 
 				<?php if (!empty($this->msgSuccess)): ?>
-					<b><p class="help-block with-errors"><?=$this->msgSuccess?></p></b>
+					<b><p class="msg"><?=$this->msgSuccess?></p></b>
 				<?php endif ?>
 
 				<?php if (empty($this->post)): ?>
-					<p class="help-block with-errors">This post has no data... Which is kinda impossible. Stop trying to break the website please >.<  </p>
+					<p class="msg">This post has no data... Which is kinda impossible. Stop trying to break the website please >.<  </p>
 				<?php else: ?>
 
 
-                <form id="contact-form" method="post" action="" role="form">
+                <form  method="post" action="" role="form">
 
                     <div class="messages"></div>
 
@@ -33,7 +33,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="title">Title * </label>
-                                    <input id="title" type="text" name="title" class="form-control" placeholder="Update title *" required="required" data-error="The title is required.">
+                                    <input id="title" type="text" name="title" class="form-control" value='<?=$this->post->title?>' required="required" data-error="The title is required.">
                                     <div class="help-block with-errors"></div>
 									<small> Title needs to be a maximum of 50 characters</small>
                                 </div>
@@ -43,7 +43,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="author">Author *</label>
-                                    <input id="author" type="text" name="author" class="form-control" placeholder="Update author's name *" required="required" data-error="Author is required.">
+                                    <input id="author" type="text" name="author" class="form-control" value='<?=$this->post->author?>' required="required" data-error="Author is required.">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="small_desc">Small description *</label>
-                                    <textarea id="small_desc" name="small_desc" class="form-control" placeholder="Update description. Make it short and on point. *" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+                                    <textarea id="small_desc" name="small_desc" class="form-control" rows="4" required="required" data-error="Please,leave us a message."><?=$this->post->small_desc?></textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="content">Content *</label>
-                                    <textarea id="content" name="content" class="form-control" placeholder="Update content *" rows="4" required="required" data-error="Kindly write your post's content"></textarea>
+                                    <textarea id="content" name="content" class="form-control" rows="4" required="required" data-error="Kindly write your post's content"><?=$this->post->content?></textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
