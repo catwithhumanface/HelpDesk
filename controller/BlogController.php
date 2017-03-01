@@ -1,12 +1,19 @@
 <?php
 namespace BlogPHP\Controller;
 
+/**
+ * Class BlogController
+ * @package BlogPHP\Controller
+ */
 class BlogController {
 	
 	protected $manager, $model;
     private $id;
-	
-	
+
+
+    /**
+     * BlogController constructor.
+     */
     public function __construct() {
         $this->manager = new \BlogPHP\app\BlogManager;
         // Get the Model class in order for it to be used directly in all of this Controller
@@ -23,29 +30,41 @@ class BlogController {
             session_start();
         }
     }
-	
+
+    /**
+     * Generation of the homepage.
+     */
 	public function home() {
 		$this->manager->post = $this->model->getAll();
         $this->manager->getView('home');
     }
-	
+
+    /**
+     * Generation of the all blog posts.
+     */
     public function blogPosts() {
         $this->manager->posts = $this->model->getAll(); // Get all the posts
         $this->manager->getView('blogPosts');
     }
-	
-	
+
+    /**
+     * Generation of a specific blog post.
+     */
     public function post() {
         $this->manager->post = $this->model->getById($this->id); // Get the specific post using it's ID
         $this->manager->getView('post');
     }
-	
-	
+
+    /**
+     * Generation of the not found page.
+     */
     public function notFound() {
         $this->manager->getView('404');
     }
-	
-	
+
+    /**
+     * Generation of the add post page where we're able to create a new post.
+     */
     public function add() {
         if (!empty($_POST['add_submit'])) { // Making sure that the sumbit button is coming from the add.php page (containing the add_submit button) {
             if (isset($_POST['title'], $_POST['small_desc'], $_POST['content'], $_POST['author']) && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['small_desc']) && !empty($_POST['content']) && !empty($_POST['author'])) { // Allow a maximum of 50 characters and making sure the input we get is not empty (a bit equal to required="required" in the HTML form, but who trusts HTML anyways? :D)
@@ -74,8 +93,10 @@ class BlogController {
         }
         $this->manager->getView('add');
     }
-	
-	
+
+    /**
+     * Generation of the edit post page where we're able to update an existing post.
+     */
     public function edit()
     {
         if (!empty($_POST['edit_submit'])) { // Making sure that the sumbit button is coming from the edit.php page (containing the edit_submit button)
@@ -111,8 +132,10 @@ class BlogController {
 		
         $this->manager->getView('edit');
     }
-	
-	
+
+    /**
+     * Generation of the delete post button.
+     */
     public function delete(){
         if (!empty($_POST['delete']) && $this->model->delete($this->id)) {
             header('Location: ' . ROOT_URL);
@@ -122,6 +145,9 @@ class BlogController {
 		}
     }
 
+    /**
+     * Generation of the login page.
+     */
     public function login() {
         if (!empty($_SESSION)) {
             header('Location: ' . ROOT_URL);
@@ -139,6 +165,9 @@ class BlogController {
         $this->manager->getView('login');
     }
 
+    /**
+     * Generation of the logout page.
+     */
     public function logout() {
         if (empty($_SESSION)) {
             header('Location: ' . ROOT_URL);

@@ -2,9 +2,16 @@
 
 namespace BlogPHP\App;
 
+/**
+ * Class Database Containing the Database informations
+ * @package BlogPHP\App
+ */
 class Database extends \PDO{
-	
-	public function __construct() {
+
+    /**
+     * Database constructor.
+     */
+    public function __construct() {
 		
 		//Change these values to your own database.
 		$_MYSQL_DB = 'blogMVC_OOP';
