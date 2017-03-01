@@ -5,8 +5,7 @@ Blog-PHP-OOP
 
 ## Desription 
 This is a blog created using PHP/OOP using the MVC architecture, Namespaces, PDO... and much more!
-
-It was created in order to help others wanting a basic Blog created in OOP with an MVC patern. This is not a complete advanced and complex blog, it's but a simple blog that you can use as a kind of blog framework for PHP to start your own project under a *good development pattern* and a *good development practice* and organization.
+This is not a complete advanced and complex blog, it's but a simple blog that you can use as a blog framework for PHP.
 
 ## Version
 1.0
@@ -24,13 +23,21 @@ It was created in order to help others wanting a basic Blog created in OOP with 
 ** description of the admin  
 ** CV of the admin  
 ** social network links  
-** menu bar linking to the home page, the blog page and a page to add a new blog post  
+** menu bar linking to the home page, the blog page and -a login page if not looged in -a page to add a new blog post and logout if logged in  
 ** contact form (name, email, message) with simple information  
+
+* Login page contaning :
+** login form to enter username and password
+
 * Blog page containing :  
 ** List of blog posts from most recent to most ancient  
-** Each blog post showing the title, small description, last modification date and several links to read more, edit and delete the post  
+** Each blog post showing the title, small description, last modification date and a link to read more  
+** if logged in two links to edit and delete the post  
+
 * Post page containing :  
-** Blog article showing the title, small description, content, author, last modification date and several links to edit and delete the post  
+** Blog article showing the title, small description, content, author, last modification date  
+** if logged in two links to edit and delete the post  
+
 * Add new post page containing a form to fill in order to add a post  
 * Edit post page containing a form to fill in order to edit a post  
 
