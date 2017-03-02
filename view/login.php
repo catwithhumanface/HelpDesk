@@ -29,7 +29,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="username">Username * </label><br/>
-                                                <small> For testing purposes, username is : test</small>
+                                                <small> For testing purposes, username is : admin</small>
                                                 <input id="username" type="text" name="username" class="form-control" placeholder="Enter your username." required="required" data-error="Username is required.">
                                                 <div class="help-block with-errors"></div>
                                             </div>
@@ -39,7 +39,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="password">Password *</label><br/>
-                                                <small> For testing purposes, password is : password</small>
+                                                <small><a href="<?=ROOT_URL?>?p=blogController&amp;a=changePwd">Change password?</a></small>
                                                 <input id="password" type="password" name="password" class="form-control" placeholder="Enter your password." required="required" data-error="Author is required.">
                                                 <div class="help-block with-errors"></div>
                                             </div>

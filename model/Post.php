@@ -116,5 +116,17 @@ class Post {
             return password_verify($password, $queryRequest->password);
         }
     }
+
+    /**
+     * Changing password authentication
+     * @param $password
+     * @return bool
+     */
+    public function setAuthentication($password) {
+        $query = $this->db_connection->prepare('UPDATE users SET password=:password LIMIT 1');
+        $newPassword = password_hash($password , PASSWORD_DEFAULT);
+        $query->bindParam(':password', $newPassword);
+        return $query->execute();
+    }
 	
 }

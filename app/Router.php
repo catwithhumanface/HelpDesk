@@ -7,10 +7,12 @@ namespace BlogPHP\App;
  * Class Router that is used to create routes dynamically.
  * @package BlogPHP\App
  */
+
 class Router {
     /**
      * @param array $params contaning the two kind of routes we'll be using, p and act
      */
+
     public static function run (array $params) {
 		
         $namespace = 'BlogPHP\controller\\';

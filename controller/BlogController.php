@@ -93,8 +93,7 @@ class BlogController {
     /**
      * Generation of the edit post page where we're able to update an existing post.
      */
-    public function edit()
-    {
+    public function edit() {
         if (!empty($_POST['edit_submit'])) { // Making sure that the sumbit button is coming from the edit.php page (containing the edit_submit button)
             if (isset($_POST['title'], $_POST['small_desc'], $_POST['content'], $_POST['author']) && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['small_desc']) && !empty($_POST['content']) && !empty($_POST['author'])) {
 				if(!ctype_space($_POST['title']) && !ctype_space($_POST['small_desc']) && !ctype_space($_POST['content']) && !ctype_space($_POST['author'])) {
@@ -175,5 +174,26 @@ class BlogController {
             setcookie(session_name(),'',0,'/');
         }
         $this->manager->getView('logout');
+    }
+
+    public function changePwd() {
+        if (!empty($_POST['change_submit'])) { // Making sure that the sumbit button is coming from the change_password.php page (containing the change_submit button)
+            if (isset($_POST['newPassword']) && mb_strlen($_POST['newPassword']) >= 10 && !empty($_POST['newPassword'])) {
+                if(!ctype_space($_POST['newPassword'])) {
+                    $password = htmlspecialchars($_POST['newPassword']);
+                    if ($this->model->setAuthentication($password)) {
+                         $this->manager->msgSuccess = 'The password was updated with success.';
+                    } else {
+                        $this->manager->msgError = 'An error has occured. Please contact the site admin.';
+                    }
+                } else {
+                    $this->manager->msgError = 'Please don\'t have your password consisted of only blank spaces...';
+                }
+            }
+            else {
+                $this->manager->msgError = 'Password needs to be more than 9 characters.';
+            }
+        }
+        $this->manager->getView('change_password');
     }
 }
