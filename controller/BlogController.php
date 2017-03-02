@@ -25,10 +25,6 @@ class BlogController {
 		} else {
 			$this->id = (int) $_GET['id']; // The cast is used to double check that the id is indeed an integer
 		}
-		//Creation of the session as soon as the website loads
-        if (empty($_SESSION)) {
-            session_start();
-        }
     }
 
     /**

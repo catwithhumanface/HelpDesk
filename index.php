@@ -14,6 +14,11 @@ if(isset($_SERVER["HTTPS"])&& strtolower($_SERVER["HTTPS"]) == "on" ) {
 	$protocol = 'http://';
 }
 
+//Creation of the session as soon as the website loads
+if (empty($_SESSION)) {
+	session_start();
+}
+
 define('PROTOCOL', $protocol);
 // Removing backslashes for Windows compatibility in wamp
 define('ROOT_URL', PROTOCOL . $_SERVER['HTTP_HOST'] . str_replace('\\', '', dirname(htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES))) . '/'); 
