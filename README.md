@@ -51,7 +51,7 @@ Here I'll be explaining how to setup the project on your localhost ! But please 
 
 ### Linux/Unix server (web hosting websites)
 I'll explain here in details what to modify in the code in order to have it working in your web hosting website if you won't work locally and intend to put it up in a live website. **Please note, all of the steps above in the *Windows server* paragraph needs to be done first before moving on to this part. As it's not a replacement to what was written above, but it's continuation**
-* Step 1 : Open index.html, change line 19 with
+* Step 1 : Open index.html, comment line 24 and uncomment line 27 or just change line 24 with 
 ```php
 define('ROOT_URL', PROTOCOL . $_SERVER['HTTP_HOST'] . str_replace('\\', '', dirname(htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES)))); 
 ```
