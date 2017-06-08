@@ -132,7 +132,7 @@ class BlogController {
      * Generation of the delete post button.
      */
     public function delete(){
-        if (!empty($_POST['delete']) && $this->model->delete($this->id)) {
+        if (empty($_POST['delete']) && $this->model->delete($this->id)) {
             header('Location: ' . ROOT_URL);
 		}
         else {
