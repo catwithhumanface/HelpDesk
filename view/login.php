@@ -45,7 +45,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <input type="submit" name="add_submit" class="btn btn-success btn-send" value="Add">
+                                            <input type="submit" name="add_submit" class="btn btn-success btn-send" value="Login">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
