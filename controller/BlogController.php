@@ -1,5 +1,7 @@
 <?php
 namespace BlogPHP\Controller;
+use BlogPHP\Model\Authentication;
+use BlogPHP\Model\Post;
 
 /**
  * Class BlogController
@@ -7,7 +9,7 @@ namespace BlogPHP\Controller;
  */
 class BlogController {
 	
-	protected $manager, $model;
+	protected $manager, $modelPost, $modelAuthentication;
     private $id;
 
 
@@ -18,7 +20,9 @@ class BlogController {
         $this->manager = new \BlogPHP\app\BlogManager;
         // Get the Model class in order for it to be used directly in all of this Controller
         $this->manager->getModel('Post');
-        $this->model = new \BlogPHP\model\Post;
+        $this->manager->getModel('Authentication');
+        $this->modelPost = new Post();
+        $this->modelAuthentication = new Authentication();
         // The ID of the post directly in the constructor
 		if(empty($_GET['id'])){
 			$this->id = 0;
@@ -31,7 +35,7 @@ class BlogController {
      * Generation of the homepage.
      */
 	public function home() {
-		$this->manager->post = $this->model->getAll();
+		$this->manager->post = $this->modelPost->getAll();
         $this->manager->getView('home');
     }
 
@@ -39,7 +43,7 @@ class BlogController {
      * Generation of the all blog posts.
      */
     public function blogPosts() {
-        $this->manager->posts = $this->model->getAll(); // Get all the posts
+        $this->manager->posts = $this->modelPost->getAll(); // Get all the posts
         $this->manager->getView('blogPosts');
     }
 
@@ -47,7 +51,7 @@ class BlogController {
      * Generation of a specific blog post.
      */
     public function post() {
-        $this->manager->post = $this->model->getById($this->id); // Get the specific post using it's ID
+        $this->manager->post = $this->modelPost->getById($this->id); // Get the specific post using it's ID
         $this->manager->getView('post');
     }
 
@@ -68,7 +72,7 @@ class BlogController {
 					if(mb_strlen($_POST['title']) >= 3 && mb_strlen($_POST['small_desc']) >= 3 && mb_strlen($_POST['content']) >= 3 && mb_strlen($_POST['author']) >= 3) { // Making sure each input is more than 3 characters
 						if(preg_match('/\s/',$_POST['small_desc']) >= 1 && preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
 							$data = array('title' => htmlspecialchars($_POST['title']), 'small_desc' => htmlspecialchars($_POST['small_desc']), 'content' => htmlspecialchars($_POST['content']), 'author' => htmlspecialchars($_POST['author']));
-							if ($this->model->add($data)) {
+							if ($this->modelPost->add($data)) {
 								$this->manager->msgSuccess = 'The post was added with success.';
 							} else {
 								$this->manager->msgError = 'An error has occured. Please contact the site admin.';
@@ -100,7 +104,7 @@ class BlogController {
 					if(mb_strlen($_POST['title']) >= 3 && mb_strlen($_POST['small_desc']) >= 3 && mb_strlen($_POST['content']) >= 3 && mb_strlen($_POST['author']) >= 3) {
 					    if(preg_match('/\s/',$_POST['small_desc']) >= 1 && preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
 							$data = array('postId' => $this->id, 'title' => htmlspecialchars($_POST['title']), 'small_desc' => htmlspecialchars($_POST['small_desc']), 'content' => htmlspecialchars($_POST['content']), 'author' => htmlspecialchars($_POST['author']) );
-							if ($this->model->update($data)) {
+							if ($this->modelPost->update($data)) {
 								$this->manager->msgSuccess = 'The post was updated with success.';
 							}
 							else {
@@ -123,7 +127,7 @@ class BlogController {
         }
 		
 		// We get the data of the post
-        $this->manager->post = $this->model->getById($this->id);
+        $this->manager->post = $this->modelPost->getById($this->id);
 		
         $this->manager->getView('edit');
     }
@@ -132,7 +136,7 @@ class BlogController {
      * Generation of the delete post button.
      */
     public function delete(){
-        if (empty($_POST['delete']) && $this->model->delete($this->id)) {
+        if (empty($_POST['delete']) && $this->modelPost->delete($this->id)) {
             header('Location: ' . ROOT_URL);
 		}
         else {
@@ -148,7 +152,7 @@ class BlogController {
             header('Location: ' . ROOT_URL);
             exit();
         } else if (isset($_POST['username'], $_POST['password'])) {
-            if($this->model->getAuthentication($_POST['username'], $_POST['password'])) {
+            if($this->modelAuthentication->getAuthentication($_POST['username'], $_POST['password'])) {
                 session_start();
                 $_SESSION['active'] = $_POST['username'];
                 header('Location: ' . ROOT_URL);
@@ -181,7 +185,7 @@ class BlogController {
             if (isset($_POST['newPassword']) && mb_strlen($_POST['newPassword']) >= 10 && !empty($_POST['newPassword'])) {
                 if(!ctype_space($_POST['newPassword'])) {
                     $password = htmlspecialchars($_POST['newPassword']);
-                    if ($this->model->setAuthentication($password)) {
+                    if ($this->modelAuthentication->setAuthentication($password)) {
                          $this->manager->msgSuccess = 'The password was updated with success.';
                     } else {
                         $this->manager->msgError = 'An error has occured. Please contact the site admin.';
