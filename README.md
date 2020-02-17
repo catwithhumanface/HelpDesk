@@ -68,7 +68,7 @@ define('ROOT_URL', PROTOCOL . $_SERVER['HTTP_HOST'] . str_replace('\\', '', dirn
 
 ```
 ## Author
-Islam Elshobokshy - http://islamelshobokshy.info
+Islam Elshobokshy - https://github.com/elshobokshy
 
 ## License
 MIT
