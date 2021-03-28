@@ -9,10 +9,10 @@
 				<div class="biography">
 					<div class="biographys">
 						<div class="col-md-4 biography-info">
-							<img src="content/images/logo.jpg" class="img-responsive" alt=""/>
+							<img src="content/images/logoUt1.png" class="img-responsive" alt=""/>
 						</div>
 						<div class="col-md-8 biography-into">
-							<h4>ISLAM ELSHOBOKSHY</h4>
+							<h4>Help Desk</h4>
 							<p>I love writing code and I am really passionate about it. <br/> 
 								 This blog was created by Islam Elshobokshy using the MVC architecture of the OOP PHP and Bootstrap for a nice and clean code all the way to the front-end. <br/> 
 								 As for the theme, I used the elegant theme MINIMA. <br/> 

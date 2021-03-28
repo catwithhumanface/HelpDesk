@@ -37,10 +37,34 @@ CREATE TABLE IF NOT EXISTS users (
 --
 -- Dumping data for table `users`
 --
-
 INSERT INTO users (username, password) VALUES
 ('admin', '$2y$10$Gxsl/dZSgxKgdMmJjVDpGufd9RJPAi13YbVV.cesdHhtcoOkCOJ8y');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+/*
+CREATE TABLE IF NOT EXISTS ticket (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  title varchar(255) DEFAULT NULL,
+  content text NOT NULL,
+  id_user int(10) NOT NULL,
+  creation_date timestamp NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (id),
+  KEY fk_id_user(id_user)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS users (
+  id_user int(10) NOT NULL AUTO_INCREMENT,
+  email varchar(255) NOT NULL,
+  username varchar(255) NOT NULL,
+  password varchar(255) NOT NULL,
+  creation_date timestamp NOT NULL DEFAULT NOW(),
+  promotion varchar(255) NOT NULL,
+  PRIMARY KEY (id_user)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+*/
