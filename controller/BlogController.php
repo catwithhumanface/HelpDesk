@@ -8,7 +8,7 @@ use BlogPHP\Model\Post;
  * @package BlogPHP\Controller
  */
 class BlogController {
-	
+
 	protected $manager, $modelPost, $modelAuthentication;
     private $id;
 
@@ -116,7 +116,7 @@ class BlogController {
 					} else {
 						$this->manager->msgError = 'Minimum 3 letters required.';
 					}
-					
+
 				} else {
 					$this->manager->msgError = 'Please don\'t fill any of the fields with blank spaces.';
 				}
@@ -125,10 +125,10 @@ class BlogController {
                 $this->manager->msgError = 'Kindly fill all of the required fields before you submit, and make sure the title is less than 50 characters!';
             }
         }
-		
+
 		// We get the data of the post
         $this->manager->post = $this->modelPost->getById($this->id);
-		
+
         $this->manager->getView('edit');
     }
 
@@ -163,6 +163,26 @@ class BlogController {
         }
         $this->manager->getView('login');
     }
+
+		/**
+		 * Generation of the subscription page.
+		 */
+		public function subscription() {
+				if (!empty($_SESSION)) {
+						header('Location: ' . ROOT_URL);
+						exit();
+				} else if (isset($_POST['username'], $_POST['password'])) {
+						if($this->modelAuthentication->getAuthentication($_POST['username'], $_POST['password'])) {
+								session_start();
+								$_SESSION['active'] = $_POST['username'];
+								header('Location: ' . ROOT_URL);
+								exit();
+						} else {
+								$this->manager->msgError = 'Your login credentials are incorrect. Please try again later.';
+						}
+				}
+				$this->manager->getView('subscription');
+		}
 
     /**
      * Generation of the logout page.

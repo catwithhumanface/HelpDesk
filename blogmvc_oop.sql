@@ -8,7 +8,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: 'blogmvc_oop'
+-- Database: 'helpdesk'
 --
 
 -- --------------------------------------------------------
@@ -26,14 +26,14 @@ CREATE TABLE IF NOT EXISTS posts (
   date timestamp NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
+/*
 CREATE TABLE IF NOT EXISTS users (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   username varchar(255) NOT NULL,
   password char(255) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
+*/
 --
 -- Dumping data for table `users`
 --
@@ -47,7 +47,7 @@ INSERT INTO users (username, password) VALUES
 
 
 
-/*
+
 CREATE TABLE IF NOT EXISTS ticket (
   id int(10) NOT NULL AUTO_INCREMENT,
   title varchar(255) DEFAULT NULL,
@@ -61,10 +61,10 @@ CREATE TABLE IF NOT EXISTS ticket (
 CREATE TABLE IF NOT EXISTS users (
   id_user int(10) NOT NULL AUTO_INCREMENT,
   email varchar(255) NOT NULL,
-  username varchar(255) NOT NULL,
+  name varchar(255) NOT NULL,
+  firstrname varchar(255) NOT NULL,
   password varchar(255) NOT NULL,
   creation_date timestamp NOT NULL DEFAULT NOW(),
-  promotion varchar(255) NOT NULL,
+  statut varchar(255) NOT NULL,
   PRIMARY KEY (id_user)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-*/

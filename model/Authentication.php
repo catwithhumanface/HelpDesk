@@ -13,10 +13,10 @@ class Authentication {
     /**
      * Authentication constructor.
      */
-    public function __construct() {
-        //$this->db_connection = new \BlogPHP\app\Database;
+  /*  public function __construct() {
+      /  $this->db_connection = new \BlogPHP\app\Database;
     }
-
+*/
     /**
      * Authentication process
      * @param $username
