@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Blog PHP/OOP</title>
+<title>HelpDesk Etudiant</title>
 <link href="content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <link href="content/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="content/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -50,15 +50,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="head-nav">
 					<span class="menu"> </span>
 						<ul class="cl-effect-15">
-							<li><a href="<?=ROOT_URL?>">HOME</a></li>
+							<li><a href="<?=ROOT_URL?>">Accueil</a></li>
 							<li><a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts" data-hover="BLOG">BLOG</a></li>
                             <?php if(empty($_SESSION['active'])): ?>
-                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=login" data-hover="LOGIN">LOGIN</a></li>
+                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=login" data-hover="Connexion"></a></li>
                             <?php elseif(!empty($_SESSION['active'])) : ?>
-                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=add" data-hover="ADD A NEW POST">ADD A NEW POST</a></li>
-                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=logout" data-hover="LOGOUT">LOGOUT</a></li>
+                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=add" data-hover="ADD A NEW POST">Ajouter un nouveau ticket</a></li>
+                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=logout" data-hover="LOGOUT">Se déconnecter</a></li>
                             <?php endif ?>
                             <div class="clearfix"> </div>
+								<li><a href="<?=ROOT_URL?>?p=blogController&amp;a=subscription" data-hover="Inscription"></a></li>
 						</ul>
 				</div>
 
@@ -70,7 +71,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						  });
 						});
 					</script>
-				<!-- script-for-nav --> 					 
-	</div> 
+				<!-- script-for-nav -->
+	</div>
 </div>
 <!-- header -->
