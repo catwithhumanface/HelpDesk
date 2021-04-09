@@ -54,9 +54,14 @@ CREATE TABLE IF NOT EXISTS ticket (
   content text NOT NULL,
   id_user int(10) NOT NULL,
   creation_date timestamp NOT NULL DEFAULT NOW(),
+  category varchar(255) NOT NULL,
+  status varchar(255) DEFAULT 'en cours',
   PRIMARY KEY (id),
   KEY fk_id_user(id_user)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
+
 
 CREATE TABLE IF NOT EXISTS users (
   id_user int(10) NOT NULL AUTO_INCREMENT,
@@ -65,6 +70,7 @@ CREATE TABLE IF NOT EXISTS users (
   password varchar(255) NOT NULL,
   creation_date timestamp NOT NULL DEFAULT NOW(),
   promotion varchar(255) NOT NULL,
+  type_user varchar(255) NOT NULL,
   PRIMARY KEY (id_user)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 */
