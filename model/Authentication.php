@@ -25,8 +25,9 @@ class Authentication {
      * @return bool
      */
     public function getAuthentication($username, $password) {
-        $query = $this->db_connection->prepare('SELECT username, password FROM users WHERE username = :usr');
+        $query = $this->db_connection->prepare('SELECT username, password FROM users WHERE username = :usr'); // and password=:pwd');
         $query->bindParam(':usr', $username, \PDO::PARAM_STR);
+       // $query->bindParam(':pwd', $password, \PDO::PARAM_STR);
         $query->execute();
         //Password hashing tutorial : http://www.ibm.com/developerworks/library/wa-php-renewed_2/index.html
         //Password verify doc : http://php.net/manual/en/function.password-verify.php
@@ -34,7 +35,8 @@ class Authentication {
         $queryRequest = $query->fetch(\PDO::FETCH_OBJ);
 
         if($queryRequest) {
-            return password_verify($password, $queryRequest->password);
+           // return 1;
+           return password_verify($password, $queryRequest->password);
         }
     }
 
