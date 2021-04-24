@@ -1,5 +1,6 @@
 <?php
 namespace BlogPHP\Controller;
+
 use BlogPHP\Model\Authentication;
 use BlogPHP\Model\Post;
 
@@ -21,8 +22,8 @@ class BlogController {
         // Get the Model class in order for it to be used directly in all of this Controller
         $this->manager->getModel('Post');
         $this->manager->getModel('Authentication');
-        $this->modelPost = new Post();
-        $this->modelAuthentication = new Authentication();
+        //$this->modelPost = new Post();
+        //$this->modelAuthentication = new Authentication();
         // The ID of the post directly in the constructor
 		if(empty($_GET['id'])){
 			$this->id = 0;
@@ -35,6 +36,7 @@ class BlogController {
      * Generation of the homepage.
      */
 	public function home() {
+        $this->modelPost = new Post();
 		$this->manager->post = $this->modelPost->getAll();
         $this->manager->getView('home');
     }
@@ -43,6 +45,7 @@ class BlogController {
      * Generation of the all blog posts.
      */
     public function blogPosts() {
+        $this->modelPost = new Post();
         $this->manager->posts = $this->modelPost->getAll(); // Get all the posts
         $this->manager->getView('blogPosts');
     }
@@ -51,6 +54,7 @@ class BlogController {
      * Generation of a specific blog post.
      */
     public function post() {
+        $this->modelPost = new Post();
         $this->manager->post = $this->modelPost->getById($this->id); // Get the specific post using it's ID
         $this->manager->getView('post');
     }
@@ -66,6 +70,7 @@ class BlogController {
      * Generation of the add post page where we're able to create a new post.
      */
     public function add() {
+        $this->modelPost = new Post();
         if (!empty($_POST['add_submit'])) { // Making sure that the sumbit button is coming from the add.php page (containing the add_submit button) {
             if (isset($_POST['title'], $_POST['small_desc'], $_POST['content'], $_POST['author']) && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['small_desc']) && !empty($_POST['content']) && !empty($_POST['author'])) { // Allow a maximum of 50 characters and making sure the input we get is not empty (a bit equal to required="required" in the HTML form, but who trusts HTML anyways? :D)
                 if(!ctype_space($_POST['title']) && !ctype_space($_POST['small_desc']) && !ctype_space($_POST['content']) && !ctype_space($_POST['author'])) { // Making sure there's a contact in the input we got that is not all full spaces
@@ -98,6 +103,7 @@ class BlogController {
      * Generation of the edit post page where we're able to update an existing post.
      */
     public function edit() {
+        $this->modelPost = new Post();
         if (!empty($_POST['edit_submit'])) { // Making sure that the sumbit button is coming from the edit.php page (containing the edit_submit button)
             if (isset($_POST['title'], $_POST['small_desc'], $_POST['content'], $_POST['author']) && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['small_desc']) && !empty($_POST['content']) && !empty($_POST['author'])) {
 				if(!ctype_space($_POST['title']) && !ctype_space($_POST['small_desc']) && !ctype_space($_POST['content']) && !ctype_space($_POST['author'])) {
@@ -136,6 +142,7 @@ class BlogController {
      * Generation of the delete post button.
      */
     public function delete(){
+        $this->modelPost = new Post();
         if (empty($_POST['delete']) && $this->modelPost->delete($this->id)) {
             header('Location: ' . ROOT_URL);
 		}
@@ -148,6 +155,7 @@ class BlogController {
      * Generation of the login page.
      */
     public function login() {
+        $this->modelAuthentication = new Authentication();
         if (!empty($_SESSION)) {
             header('Location: ' . ROOT_URL);
             exit();
@@ -168,6 +176,7 @@ class BlogController {
 		 * Generation of the subscription page.
 		 */
 		public function subscription() {
+            $this->modelAuthentication = new Authentication();
 				if (!empty($_SESSION)) {
 						header('Location: ' . ROOT_URL);
 						exit();
@@ -188,6 +197,7 @@ class BlogController {
      * Generation of the logout page.
      */
     public function logout() {
+        $this->modelAuthentication = new Authentication();
         if (empty($_SESSION)) {
             header('Location: ' . ROOT_URL);
             exit();
@@ -201,6 +211,7 @@ class BlogController {
     }
 
     public function changePwd() {
+        $this->modelAuthentication = new Authentication();
         if (!empty($_POST['change_submit'])) { // Making sure that the sumbit button is coming from the change_password.php page (containing the change_submit button)
             if (isset($_POST['newPassword']) && mb_strlen($_POST['newPassword']) >= 10 && !empty($_POST['newPassword'])) {
                 if(!ctype_space($_POST['newPassword'])) {

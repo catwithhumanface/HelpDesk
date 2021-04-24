@@ -2,21 +2,22 @@
 
 namespace BlogPHP\Model;
 
+use BlogPHP\App\Model;
+
 /**
  * Class Authentication
  * @package BlogPHP\Model
  */
 class Authentication {
-
-    protected $db_connection;
+   protected $db_connection;
 
     /**
      * Authentication constructor.
      */
-  /*  public function __construct() {
-      /  $this->db_connection = new \BlogPHP\app\Database;
+
+   public function __construct() {
+        $this->db_connection = new \BlogPHP\app\Database;
     }
-*/
     /**
      * Authentication process
      * @param $username
@@ -31,6 +32,7 @@ class Authentication {
         //Password verify doc : http://php.net/manual/en/function.password-verify.php
         //Here, as the blog won't have a login, we won't use password_hash, only password verify to get the credentials from the database
         $queryRequest = $query->fetch(\PDO::FETCH_OBJ);
+
         if($queryRequest) {
             return password_verify($password, $queryRequest->password);
         }

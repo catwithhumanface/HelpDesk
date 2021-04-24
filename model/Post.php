@@ -2,6 +2,8 @@
 
 namespace BlogPHP\Model;
 
+use BlogPHP\App\Model;
+
 /**
  * Class Post
  * @package BlogPHP\Model
@@ -13,6 +15,7 @@ class Post {
     /**
      * Post constructor.
      */
+
     public function __construct() {
         $this->db_connection = new \BlogPHP\app\Database;
     }
