@@ -26,8 +26,8 @@
 					<i class="lik"></i>
 				</div>
 				<div class="top2">
-					<h6>Website </h6>
-					<p><a href="http://islamelshobokshy.info" target='_blank'> islamelshobokshy.info</a></p>
+					<h6>Dalac Program </h6>
+					<p><a href="http://islamelshobokshy.info" target='_blank'> DalacPrograms.info</a></p>
 				</div>
 				<div class="clearfix"> </div>
 			</div>

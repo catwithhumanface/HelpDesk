@@ -8,7 +8,7 @@
 
                     <div class="col-lg-8 col-lg-offset-2">
 
-                        <h1>Change Password</h1>
+                        <h1>Changer de mot de passe</h1>
 
                         <?php if (!empty($this->msgError)): ?>
                             <p class="msg"><?=$this->msgError?></p>
@@ -28,10 +28,10 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="newPassword">New password * </label><br/>
-                                            <input id="newPassword" type="text" name="newPassword" class="form-control" placeholder="Enter your new password." required="required" data-error="New password is required.">
+                                            <label for="newPassword">Nouveu mot de passe* </label><br/>
+                                            <input id="newPassword" type="text" name="newPassword" class="form-control" placeholder="Entrer votre nouveau mot de passe." required="required" data-error="New password is required.">
                                             <div class="help-block with-errors"></div>
-                                            <small> New password needs to be a minimum of 10 characters (in case sensitive!).</small>
+                                            <small> Le nouveau mot de passe doit avoir au minimum 10 caractères.</small>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p class="text-muted"><strong>*</strong> This field is required.</p>
+                                        <p class="text-muted"><strong>*</strong> Ces champs sont obligatoires.</p>
                                     </div>
                                 </div>
                             </div>
