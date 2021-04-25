@@ -39,7 +39,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="name">Nom * </label><br/>
-                                                <small> For testing purposes, username is : admin</small>
+                                                <small> </small>
                                                 <input id="username" type="text" name="username" class="form-control" placeholder="Enter your username." required="required" data-error="Username is required.">
                                                 <div class="help-block with-errors"></div>
                                             </div>
@@ -50,7 +50,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="firstname">  Prénom* </label><br/>
-                                                <small> For testing purposes, username is : admin</small>
+                                                <small> </small>
                                                 <input id="firstname" type="text" name="firstname" class="form-control" placeholder="Enter your username." required="required" data-error="Username is required.">
                                                 <div class="help-block with-errors"></div>
                                             </div>

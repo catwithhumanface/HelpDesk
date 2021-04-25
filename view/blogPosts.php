@@ -1,4 +1,5 @@
-<?php require_once 'shared/header.php' ?>
+<?php require_once 'shared/header.php'
+session_start(); ?>
 
 <!-- content -->
 <div class="content">
@@ -25,7 +26,7 @@
 							<div class="clearfix"></div>
 						</div>
 					</li>
-				<?php else: ?>
+				<?php else:echo "connexion  réussie" ?>
 					<?php foreach ($this->posts as $post): ?>
 						<li>
                             <div class="l_g">
@@ -60,6 +61,6 @@
 	 </div>
 	</div>
 </div>
-<!-- content -->	
+<!-- content -->
 
 <?php require_once 'shared/footer.php' ?>

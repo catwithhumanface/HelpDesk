@@ -7,15 +7,10 @@ namespace BlogPHP\Model;
  * @package BlogPHP\Model
  */
 class Post {
-	
+
 	protected $db_connection;
 
-    /**
-     * Post constructor.
-     */
-    public function __construct() {
-        $this->db_connection = new \BlogPHP\app\Database;
-    }
+
 
     /**
      * Allowing the possibility to show only a specific set of posts in a certain range from $startLimit to $endLimit
@@ -24,7 +19,7 @@ class Post {
      * @return array
      */
     public function get($startLimit, $endLimit) {
-		//Preparing the query 
+		//Preparing the query
         $query = $this->db_connection->prepare('SELECT * FROM posts ORDER BY date DESC LIMIT :startLimitRange, :endLimitRange');
 		//Both of the ranges given through the bindParam() method, using the PDO::PARAM_INT
         $query->bindParam(':startLimitRange', $startLimit, \PDO::PARAM_INT);
@@ -40,9 +35,26 @@ class Post {
      * @return array
      */
     public function getAll() {
-        $query = $this->db_connection->query('SELECT * FROM posts ORDER BY date DESC');
-        return $query->fetchAll(\PDO::FETCH_OBJ);
+      //  $query = $this->db_connection->query('SELECT * FROM posts ORDER BY date DESC');
+      //  return $query->fetchAll(\PDO::FETCH_OBJ);
     }
+
+		/**
+     * Add a user
+     * @param array $queryData
+     * @return bool
+     */
+    public function new_user(array $queryData) {
+        $query = $this->db_connection->prepare('INSERT INTO users (password, email,name,firstname,statut) VALUES(:password, :email, :name, :firstname,:statut)');
+        $query->bindValue(':password', $queryData['password']);
+        $query->bindValue(':email', $queryData['email']);
+        $query->bindValue(':name', $queryData['name']);
+        $query->bindValue(':firstname', $queryData['firstname']);
+				$query->bindValue(':statut', $queryData['statut']);
+		return $query->execute($queryData);
+    }
+
+
 
     /**
      * Get a post by it's ID
@@ -97,5 +109,5 @@ class Post {
         $query->bindParam(':postId', $id, \PDO::PARAM_INT);
         return $query->execute();
     }
-	
+
 }

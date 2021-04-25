@@ -13,19 +13,19 @@ class Authentication {
     /**
      * Authentication constructor.
      */
-  /*  public function __construct() {
-      /  $this->db_connection = new \BlogPHP\app\Database;
+    public function __construct() {
+        $this->db_connection = new \BlogPHP\app\Database;
     }
-*/
+
     /**
      * Authentication process
      * @param $username
      * @param $password
      * @return bool
      */
-    public function getAuthentication($username, $password) {
-        $query = $this->db_connection->prepare('SELECT username, password FROM users WHERE username = :usr');
-        $query->bindParam(':usr', $username, \PDO::PARAM_STR);
+    public function getAuthentication($email, $password) {
+        $query = $this->db_connection->prepare('SELECT email, password FROM users WHERE id= :id');
+        $query->bindParam(':id', $email, \PDO::PARAM_STR);
         $query->execute();
         //Password hashing tutorial : http://www.ibm.com/developerworks/library/wa-php-renewed_2/index.html
         //Password verify doc : http://php.net/manual/en/function.password-verify.php

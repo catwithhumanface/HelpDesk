@@ -151,11 +151,11 @@ class BlogController {
         if (!empty($_SESSION)) {
             header('Location: ' . ROOT_URL);
             exit();
-        } else if (isset($_POST['username'], $_POST['password'])) {
-            if($this->modelAuthentication->getAuthentication($_POST['username'], $_POST['password'])) {
+        } else if (isset($_POST['email'], $_POST['password'])) {
+            if($this->modelAuthentication->getAuthentication($_POST['email'], $_POST['password'])) {
                 session_start();
-                $_SESSION['active'] = $_POST['username'];
-                header('Location: ' . ROOT_URL);
+                $_SESSION['active'] = $_POST['firstname'];
+                header('Location:view/post.php ' . ROOT_URL);
                 exit();
             } else {
                 $this->manager->msgError = 'Your login credentials are incorrect. Please try again later.';
@@ -168,20 +168,54 @@ class BlogController {
 		 * Generation of the subscription page.
 		 */
 		public function subscription() {
-				if (!empty($_SESSION)) {
-						header('Location: ' . ROOT_URL);
-						exit();
-				} else if (isset($_POST['username'], $_POST['password'])) {
-						if($this->modelAuthentication->getAuthentication($_POST['username'], $_POST['password'])) {
-								session_start();
-								$_SESSION['active'] = $_POST['username'];
-								header('Location: ' . ROOT_URL);
-								exit();
-						} else {
-								$this->manager->msgError = 'Your login credentials are incorrect. Please try again later.';
-						}
-				}
+				// if (!empty($_SESSION)) {
+				// 		header('Location: ' . ROOT_URL);
+				// 		echo"bla";
+				// 		exit();
+				// } else if (isset($_POST['email'], $_POST['password'])) {
+				// 		if($this->modelAuthentication->getAuthentication($_POST['email'], $_POST['password'])) {
+				// 				session_start();
+				// 				$_SESSION['active'] = $_POST['firstname'];
+				// 				header('Location:' . ROOT_URL);
+				// 					echo "sdger";
+				// 				exit();
+				// 		} else {
+				// 				//$this->manager->msgError = 'Vos identifiants sont incorrects.';
+				// 						//if($this->modelPost->new_user()) {
+				// 								session_start();
+				// 						//	$data = array('password' => htmlspecialchars($_POST['password']), 'email' => htmlspecialchars($_POST['email']), 'name' => htmlspecialchars($_POST['name']), 'firstname' => htmlspecialchars($_POST['firstname']), 'statut' => htmlspecialchars($_POST['statut']));
+				// 								header('Location:' . ROOT_URL);
+				//
+				// 								exit();
+				//
+				// }
 				$this->manager->getView('subscription');
+				
+		}
+		public function new_subscriber() {
+				if (!empty($_SESSION)) {
+					$data = array('password' => htmlspecialchars($_POST['password']), 'email' => htmlspecialchars($_POST['email']), 'name' => htmlspecialchars($_POST['name']), 'firstname' => htmlspecialchars($_POST['firstname']), 'statut' => htmlspecialchars($_POST['statut']));
+					if($this->modelPost->new_user($data)) {
+							session_start();
+					//	$data = array('password' => htmlspecialchars($_POST['password']), 'email' => htmlspecialchars($_POST['email']), 'name' => htmlspecialchars($_POST['name']), 'firstname' => htmlspecialchars($_POST['firstname']), 'statut' => htmlspecialchars($_POST['statut']));
+							//header('Location:' . ROOT_URL);
+								echo "connectée !";
+							exit();
+					}
+					//	header('Location: ' . ROOT_URL);
+
+						exit();
+				} else {
+										$data = array('password' => htmlspecialchars($_POST['password']), 'email' => htmlspecialchars($_POST['email']), 'name' => htmlspecialchars($_POST['name']), 'firstname' => htmlspecialchars($_POST['firstname']), 'statut' => htmlspecialchars($_POST['statut']));
+										if($this->modelPost->new_user($data)) {
+												session_start();
+										//	$data = array('password' => htmlspecialchars($_POST['password']), 'email' => htmlspecialchars($_POST['email']), 'name' => htmlspecialchars($_POST['name']), 'firstname' => htmlspecialchars($_POST['firstname']), 'statut' => htmlspecialchars($_POST['statut']));
+												//header('Location:' . ROOT_URL);
+													echo "connectée wouh!";
+												exit();
+										}
+				}
+				$this->manager->getView('new_subscriber');
 		}
 
     /**
