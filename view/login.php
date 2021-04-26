@@ -28,9 +28,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="username">Nom * </label><br/>
-                                                <small> For testing purposes, username is : admin</small>
-                                                <input id="username" type="text" name="username" class="form-control" placeholder="Enter your username." required="required" data-error="Votre nom est obligatoire.">
+                                                <label for="email">Email * </label><br/>
+                                                <input id="email" type="text" name="email" class="form-control" placeholder="Enter your email." required="required" data-error="Votre adresse mail est obligatoire.">
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
