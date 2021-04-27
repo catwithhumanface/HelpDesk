@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="955791b5-2f26-4de7-9d58-008178f1b034" name="Default Changelist" comment="db pb solved" />
+    <list default="true" id="955791b5-2f26-4de7-9d58-008178f1b034" name="Default Changelist" comment="db pb solved (merged with ann)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/BlogController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Authentication.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/Authentication.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/add.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/add.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/blogPosts.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/blogPosts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/post.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/post.php" afterDir="false" />
+    </list>
     <list id="653eea27-46da-4097-a488-75e1dfd165b5" name="Added a change password option in login page" comment="Added a change password option in login page&#10;&#10;(cherry picked from commit 366a35e837f5e7a2bfdf1b07e10e0d18ea4a607f)">
       <changelist_data name="elshobokshy" email="islam20088@hotmail.com" date="1488470798000" />
     </list>
@@ -50,6 +60,8 @@
       <option name="presentableId" value="Default" />
       <updated>1619264318568</updated>
       <workItem from="1619264323549" duration="10926000" />
+      <workItem from="1619364791549" duration="5627000" />
+      <workItem from="1619380482935" duration="24965000" />
     </task>
     <task id="LOCAL-00001" summary="db pb solved">
       <created>1619274136571</created>
@@ -72,7 +84,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619364031276</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="db pb solved (merged with ann)">
+      <created>1619365092587</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619365092587</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,9 +179,11 @@
         <entry key="d10a9d51-cf75-4cac-99e0-df2291161c97" value="TOOL_WINDOW" />
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="db pb solved" />
-    <option name="LAST_COMMIT_MESSAGE" value="db pb solved" />
+    <MESSAGE value="db pb solved (merged with ann)" />
+    <option name="LAST_COMMIT_MESSAGE" value="db pb solved (merged with ann)" />
   </component>
 </project>

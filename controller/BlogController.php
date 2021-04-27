@@ -37,7 +37,24 @@ class BlogController {
      */
 	public function home() {
         $this->modelPost = new Post();
-		$this->manager->post = $this->modelPost->getAll();
+		//$this->manager->post = $this->modelPost->getAll();
+        if(isset($_GET['cp']) && !empty($_GET["cp"])) {
+            $currentPage = (int)$_GET['cp'];
+        }else {
+            $currentPage = 1;
+        }
+        $_SESSION['currentPage'] = $currentPage;
+
+        if(isset($_GET["category"]) && !empty($_GET["category"])) {
+            $category = $_GET["category"];
+            $_SESSION['category'] = $category;
+        }else {
+            $category = "all";
+        }
+        $_SESSION['category'] = $category;
+		$tickets_per_page = 3;
+		$offset = ($currentPage -1) * $tickets_per_page;
+        $this->manager->post = $this->modelPost->get($offset, $tickets_per_page, $category);
         $this->manager->getView('home');
     }
 
@@ -46,7 +63,26 @@ class BlogController {
      */
     public function blogPosts() {
         $this->modelPost = new Post();
-        $this->manager->posts = $this->modelPost->getAll(); // Get all the posts
+        //$this->manager->post = $this->modelPost->getAll();
+        if(isset($_GET["cp"]) && !empty($_GET["cp"])) {
+            $currentPage = (int)$_GET["cp"];
+        }else {
+            $currentPage = 1;
+        }
+        $_SESSION['currentPage'] = $currentPage;
+
+        if(isset($_GET["category"]) && !empty($_GET["category"])) {
+            $category = $_GET["category"];
+            $_SESSION['category'] = $category;
+        }else {
+            $category = "all";
+        }
+        $_SESSION['category'] = $category;
+
+        $tickets_per_page = 3;
+        $offset = ($currentPage -1) * $tickets_per_page;
+        $this->manager->post = $this->modelPost->get($offset, $tickets_per_page, $category);
+        //$this->manager->post = $this->modelPost->getAll();
         $this->manager->getView('blogPosts');
     }
 
@@ -72,11 +108,11 @@ class BlogController {
     public function add() {
         $this->modelPost = new Post();
         if (!empty($_POST['add_submit'])) { // Making sure that the sumbit button is coming from the add.php page (containing the add_submit button) {
-            if (isset($_POST['title'], $_POST['small_desc'], $_POST['content'], $_POST['author']) && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['small_desc']) && !empty($_POST['content']) && !empty($_POST['author'])) { // Allow a maximum of 50 characters and making sure the input we get is not empty (a bit equal to required="required" in the HTML form, but who trusts HTML anyways? :D)
-                if(!ctype_space($_POST['title']) && !ctype_space($_POST['small_desc']) && !ctype_space($_POST['content']) && !ctype_space($_POST['author'])) { // Making sure there's a contact in the input we got that is not all full spaces
-					if(mb_strlen($_POST['title']) >= 3 && mb_strlen($_POST['small_desc']) >= 3 && mb_strlen($_POST['content']) >= 3 && mb_strlen($_POST['author']) >= 3) { // Making sure each input is more than 3 characters
-						if(preg_match('/\s/',$_POST['small_desc']) >= 1 && preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
-							$data = array('title' => htmlspecialchars($_POST['title']), 'small_desc' => htmlspecialchars($_POST['small_desc']), 'content' => htmlspecialchars($_POST['content']), 'author' => htmlspecialchars($_POST['author']));
+            if (isset($_POST['title'], $_POST['id_user'], $_POST['content'], $_POST['category']) && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['id_user']) && !empty($_POST['content']) && !empty($_POST['category'])) { // Allow a maximum of 50 characters and making sure the input we get is not empty (a bit equal to required="required" in the HTML form, but who trusts HTML anyways? :D)
+                if(!ctype_space($_POST['title']) && !ctype_space($_POST['id_user']) && !ctype_space($_POST['content']) && !ctype_space($_POST['category'])) { // Making sure there's a contact in the input we got that is not all full spaces
+					if(mb_strlen($_POST['title']) >= 3 && mb_strlen($_POST['id_user']) >= 0 && mb_strlen($_POST['content']) >= 3 && mb_strlen($_POST['category']) >= 0) { // Making sure each input is more than 3 characters
+						if(preg_match('/\s/',$_POST['id_user']) >= 0 && preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
+							$data = array('title' => htmlspecialchars($_POST['title']), 'id_user' => htmlspecialchars($_POST['id_user']), 'content' => htmlspecialchars($_POST['content']), 'category' => htmlspecialchars($_POST['category']));
 							if ($this->modelPost->add($data)) {
 								$this->manager->msgSuccess = 'The post was added with success.';
 							} else {
@@ -105,11 +141,11 @@ class BlogController {
     public function edit() {
         $this->modelPost = new Post();
         if (!empty($_POST['edit_submit'])) { // Making sure that the sumbit button is coming from the edit.php page (containing the edit_submit button)
-            if (isset($_POST['title'], $_POST['small_desc'], $_POST['content'], $_POST['author']) && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['small_desc']) && !empty($_POST['content']) && !empty($_POST['author'])) {
-				if(!ctype_space($_POST['title']) && !ctype_space($_POST['small_desc']) && !ctype_space($_POST['content']) && !ctype_space($_POST['author'])) {
-					if(mb_strlen($_POST['title']) >= 3 && mb_strlen($_POST['small_desc']) >= 3 && mb_strlen($_POST['content']) >= 3 && mb_strlen($_POST['author']) >= 3) {
-					    if(preg_match('/\s/',$_POST['small_desc']) >= 1 && preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
-							$data = array('postId' => $this->id, 'title' => htmlspecialchars($_POST['title']), 'small_desc' => htmlspecialchars($_POST['small_desc']), 'content' => htmlspecialchars($_POST['content']), 'author' => htmlspecialchars($_POST['author']) );
+            if (isset($_POST['title'], $_POST['category'], $_POST['content'])  <= 50 && !empty($_POST['title']) && !empty($_POST['category']) && !empty($_POST['content'])) {
+				if(!ctype_space($_POST['title']) && !ctype_space($_POST['category']) && !ctype_space($_POST['content'])) {
+					if(mb_strlen($_POST['title']) >= 3 && mb_strlen($_POST['category']) >= 3 && mb_strlen($_POST['content']) >= 3 ) {
+					    if(preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
+							$data = array('postId' => $this->id, 'title' => htmlspecialchars($_POST['title']), 'category' => htmlspecialchars($_POST['category']), 'content' => htmlspecialchars($_POST['content']) );
 							if ($this->modelPost->update($data)) {
 								$this->manager->msgSuccess = 'The post was updated with success.';
 							}
@@ -150,19 +186,50 @@ class BlogController {
             exit('Whoops! Post cannot be deleted.');
 		}
     }
+    // a realiser
+    public function repondre() {
+        $this->modelPost = new Post();
+        if (!empty($_POST['add_submit'])) { // Making sure that the sumbit button is coming from the add.php page (containing the add_submit button) {
+            if (isset($_POST['title'], $_POST['id_user'], $_POST['content'], $_POST['category']) && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['id_user']) && !empty($_POST['content']) && !empty($_POST['category'])) { // Allow a maximum of 50 characters and making sure the input we get is not empty (a bit equal to required="required" in the HTML form, but who trusts HTML anyways? :D)
+                if(!ctype_space($_POST['title']) && !ctype_space($_POST['id_user']) && !ctype_space($_POST['content']) && !ctype_space($_POST['category'])) { // Making sure there's a contact in the input we got that is not all full spaces
+                    if(mb_strlen($_POST['title']) >= 3 && mb_strlen($_POST['id_user']) >= 0 && mb_strlen($_POST['content']) >= 3 && mb_strlen($_POST['category']) >= 0) { // Making sure each input is more than 3 characters
+                        if(preg_match('/\s/',$_POST['id_user']) >= 0 && preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
+                            $data = array('title' => htmlspecialchars($_POST['title']), 'id_user' => htmlspecialchars($_POST['id_user']), 'content' => htmlspecialchars($_POST['content']), 'category' => htmlspecialchars($_POST['category']));
+                            if ($this->modelPost->add($data)) {
+                                $this->manager->msgSuccess = 'The post was added with success.';
+                            } else {
+                                $this->manager->msgError = 'An error has occured. Please contact the site admin.';
+                            }
+                        } else {
+                            $this->manager->msgError = 'The small description and/or content can\'t be consisted of only 1 word. 2 words minimum.';
+                        }
+                    } else {
+                        $this->manager->msgError = 'Minimum 3 letters required for each field.';
+                    }
+                } else {
+                    $this->manager->msgError = 'Please don\'t fill any of the fields with blank spaces.';
+                }
+            } else {
+                // Might not be required, as we're already checking inside the html that everything is okay, but double checking is always nice.
+                $this->manager->msgError = 'Kindly fill all of the required fields before you submit, and make sure the title is less than 50 characters!';
+            }
+        }
+        $this->manager->getView('add');
+    }
 
     /**
      * Generation of the login page.
      */
     public function login() {
         $this->modelAuthentication = new Authentication();
-        if (!empty($_SESSION)) {
+        if (!empty($_SESSION['active'])) {
             header('Location: ' . ROOT_URL);
             exit();
-        } else if (isset($_POST['username'], $_POST['password'])) {
-            if($this->modelAuthentication->getAuthentication($_POST['username'], $_POST['password'])) {
+        } else if (isset($_POST['email'], $_POST['password'])) {
+            if($this->modelAuthentication->getAuthentication($_POST['email'], $_POST['password'])) {
+                //get information of users and up to session!!!
                 session_start();
-                $_SESSION['active'] = $_POST['username'];
+                $_SESSION['active'] = $_POST['email'];
                 header('Location: ' . ROOT_URL);
                 exit();
             } else {

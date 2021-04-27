@@ -18,6 +18,18 @@
 					<b><p class="msg"><?=$this->msgSuccess?></p></b>
 				<?php endif ?>
 
+                <?php if (isset($_SESSION['active']))
+                    $email = $_SESSION['active'];
+                ?>
+
+                <?php if (isset($_SESSION['id_user']))
+                    $id_user = $_SESSION['id_user'];
+                ?>
+
+                <?php if (isset($_SESSION['username']))
+                    $username = $_SESSION['username'];
+                ?>
+
 				<?php if (empty($this->post)): ?>
 					<p class="msg">This post has no data... Which is kinda impossible. Stop trying to break the website please >.<  </p>
 				<?php else: ?>
@@ -39,20 +51,48 @@
                                 </div>
                             </div>
 						</div>
-						<div class="row">
+
+                        <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="author">Author *</label>
-                                    <input id="author" type="text" name="author" class="form-control" value='<?=$this->post->author?>' required="required" data-error="Author is required.">
+                                    <label for="category">Category *</label>
+                                    <?php if ($this->post->category =="Administratif") : ?>
+                                        <select name="category" id="category">
+                                            <option value="Administratif" selected>Administratif</option>
+                                            <option value="Pédagogique">Pédagogique</option>
+                                            <option value="Etc">Etc</option>
+                                        </select>
+                                    <?php elseif ($this->post->category =="Pédagogique"): ?>
+                                        <select name="category" id="category">
+                                            <option value="Administratif" >Administratif</option>
+                                            <option value="Pédagogique" selected>Pédagogique</option>
+                                            <option value="Etc">Etc</option>
+                                        </select>
+                                    <?php elseif ($this->post->category =="Etc"): ?>
+                                        <select name="category" id="category">
+                                            <option value="Administratif" >Administratif</option>
+                                            <option value="Pédagogique" >Pédagogique</option>
+                                            <option value="Etc" selected>Etc</option>
+                                        </select>
+                                    <?php else : ?>
+                                        <select name="category" id="category">
+                                            <option value="Administratif" >Administratif</option>
+                                            <option value="Pédagogique" >Pédagogique</option>
+                                            <option value="Etc">Etc</option>
+                                        </select>
+                                    <?php endif ?>
+
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="small_desc">Small description *</label>
-                                    <textarea id="small_desc" name="small_desc" class="form-control" rows="4" required="required" data-error="Please,leave us a message."><?=$this->post->small_desc?></textarea>
+                                    <label for="username">Username *</label>
+                                    <input id="id_user" type="hidden" name="id_user" class="form-control" placeholder="<?php echo $id_user ; ?>">
+                                    <input id="username" type="text" name="$username" class="form-control" placeholder="<?php echo $username ; ?>" readonly>
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>

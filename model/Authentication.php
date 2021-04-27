@@ -25,8 +25,14 @@ class Authentication {
      * @return bool
      */
     public function getAuthentication($email, $password) {
+<<<<<<< HEAD
         $query = $this->db_connection->prepare('SELECT email, password FROM users WHERE email = :email');
         $query->bindParam(':email', $email, \PDO::PARAM_STR);
+=======
+        $query = $this->db_connection->prepare('SELECT email, password, username, id_user, type_user FROM users WHERE email = :email ');
+        $query->bindParam(':email', $email, \PDO::PARAM_STR);
+        //$query->bindParam(':pwd', $password, \PDO::PARAM_STR);
+>>>>>>> origin/ann
         $query->execute();
         //Password hashing tutorial : http://www.ibm.com/developerworks/library/wa-php-renewed_2/index.html
         //Password verify doc : http://php.net/manual/en/function.password-verify.php
@@ -34,9 +40,30 @@ class Authentication {
         $queryRequest = $query->fetch(\PDO::FETCH_OBJ);
 
         if($queryRequest) {
-            return password_verify($password, $queryRequest->password);
+            /*
+            $query = $this->db_connection->prepare('SELECT * FROM user where email=:email');
+            $query->bindParam(':email', $email, \PDO::PARAM_STR);
+            $query->execute();
+            $rows = $query->fetch(\PDO::FETCH_ASSOC);
+            $id_user = $rows['id_user'];
+            $_SESSION['id_user'] =  $id_user;
+            */
+           // $query = $this->db_connection->prepare('SELECT username FROM users WHERE email = :email');
+            //$query->bindParam(':email', $email, \PDO::PARAM_STR);
+            //$query->execute();
+            //$username = $query->fetch(\PDO::FETCH_OBJ);
+
+           // $_SESSION['username'] =  __toString($username);
+            //return 1;
+            $_SESSION['username'] = $queryRequest->username;
+            $_SESSION['id_user'] = $queryRequest->id_user;
+            $_SESSION['type_user'] = $queryRequest->type_user;
+            return 1;
+            //return password_verify($password, $queryRequest->password);
+
         }
     }
+
 
     /**
      * Changing password authentication
