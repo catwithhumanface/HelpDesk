@@ -60,6 +60,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <?php endif ?>
                             <div class="clearfix"> </div>
 								<li><a href="<?=ROOT_URL?>?p=blogController&amp;a=subscription" data-hover="Inscription"></a></li>
+                            <li style="margin-left : 100px;"><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyse" data-hover="Analyse"></a></li>
 						</ul>
 				</div>
 

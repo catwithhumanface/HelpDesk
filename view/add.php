@@ -64,7 +64,7 @@
                                 <div class="form-group">
                                     <label for="username">Username *</label>
                                     <input id="id_user" type="hidden" name="id_user" class="form-control" placeholder="<?php echo $id_user ; ?>">
-                                    <input id="username" type="text" name="$username" class="form-control" placeholder="<?php echo $username ; ?>" readonly>
+                                    <input id="username" type="text" name="username" class="form-control" placeholder="<?php echo $username ; ?>" readonly>
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="author">Email *</label>
+                                    <label for="email">Email *</label>
                                     <input id="email" type="text" name="email" class="form-control" placeholder="<?php echo $email ; ?>" readonly>
                                     <div class="help-block with-errors"></div>
                                 </div>

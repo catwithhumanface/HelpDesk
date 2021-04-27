@@ -133,5 +133,50 @@ class Post {
         $query->bindParam(':postId', $id, \PDO::PARAM_INT);
         return $query->execute();
     }
+
+    /**
+     * @param $category
+     * @return string
+     */
+    public function getAnalyse($category) {
+        $query = $this->db_connection->prepare('SELECT creation_date, count(id) FROM ticket WHERE category = :category group by creation_date');
+        $query->bindParam(':category', $category, \PDO::PARAM_STR);
+        $rows = $query->execute();
+        $rowsArray =$query->fetchAll(\PDO::FETCH_ASSOC);
+        $rowcount = sizeof($rowsArray);
+        if($rowcount >0 ){
+            while($r = $rows->fetch_assoc()){
+                $num .= '"' . $r["count(id)"] . '",';
+                $month .= '"' . $r["creation_date"] . '",';
+            }
+            $num = substr($num, 0, -1);
+            $month = substr($month, 0, -1);
+        }else{
+            $num =0;
+            $month =0;
+        }
+        $bar_graph = '<canvas id="graph" data-settings={
+"type": "bar",
+"data": 
+{
+  "labels": [' . $month . '],
+  "datasets": 
+  [{
+    "label": " Le nombre de tickets pour category ' . $category. '  ",
+    "backgroundColor": "#00BFFF",
+    "borderColor": "#00BFFF",
+    "data": [' . $num . ']
+  }]
+},
+"options":
+{
+  "legend":
+  {
+    "display": true
+  }
+}
+}><\/canvas>';
+        return $bar_graph;
+    }
 	
 }

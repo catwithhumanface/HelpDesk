@@ -49,14 +49,15 @@ INSERT INTO users (username, password) VALUES
 
 
 CREATE TABLE IF NOT EXISTS ticket (
-  id int(10) NOT NULL AUTO_INCREMENT,
-  title varchar(255) DEFAULT NULL,
-  content text NOT NULL,
-  id_user int(10) NOT NULL,
-  creation_date timestamp NOT NULL DEFAULT NOW(),
-  PRIMARY KEY (id),
-  KEY fk_id_user(id_user)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+    id int(10) NOT NULL AUTO_INCREMENT,
+    title varchar(255) DEFAULT NULL,
+    content text NOT NULL,
+    id_user int(10) NOT NULL,
+    category varchar(255) DEFAULT "Pédagogique",
+    creation_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    PRIMARY KEY (id),
+    KEY fk_id_user(id_user)
+    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS users (
   id_user int(10) NOT NULL AUTO_INCREMENT,
