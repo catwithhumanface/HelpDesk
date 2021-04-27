@@ -301,9 +301,13 @@ class BlogController {
 
     public function analyse() {
         $this->modelPost = new Post();
-        //$this->manager->post = $this->modelPost->getAll();
-        isset($_POST["category"]) ? $category = $_POST["category"] : $category = "Pédagogique";
-        $this->manager->post = $this->modelPost->getAnalyse($category);
+        $category = "P";
+        if (isset($_GET["category"]) && !empty($_GET["category"])){
+            $category = $_GET["category"];
+            $_SESSION['categoryA'] = $category;
+        }
+        $category=$category."%";
+        $this->manager->post = $this->modelPost->analyse($category);
         $this->manager->getView('analyse');
     }
 

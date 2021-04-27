@@ -135,48 +135,57 @@ class Post {
     }
 
     /**
-     * @param $category
+     * @param string $category
      * @return string
      */
-    public function getAnalyse($category) {
-        $query = $this->db_connection->prepare('SELECT creation_date, count(id) FROM ticket WHERE category = :category group by creation_date');
-        $query->bindParam(':category', $category, \PDO::PARAM_STR);
-        $rows = $query->execute();
-        $rowsArray =$query->fetchAll(\PDO::FETCH_ASSOC);
-        $rowcount = sizeof($rowsArray);
-        if($rowcount >0 ){
-            while($r = $rows->fetch_assoc()){
-                $num .= '"' . $r["count(id)"] . '",';
-                $month .= '"' . $r["creation_date"] . '",';
+    public function analyse($category)
+    {
+
+        $month = " ";
+        $num = " ";
+
+
+
+            $query = $this->db_connection->prepare('SELECT date_format(creation_date, "%Y-%m-%d") as date 
+                                                        FROM ticket where category like :category group by creation_date');
+            $query->bindParam(':category', $category, \PDO::PARAM_STR);
+            $query->execute();
+            $rows = $query->fetchAll(\PDO::FETCH_ASSOC);
+            $totalCount = sizeof($rows);
+            if ($totalCount > 0) {
+                for ($i = 0; $i < $totalCount; $i++) {
+                    $month .= '"' . implode($rows[$i]) . '",';
+                }
+                $month = substr($month, 0, -1);
             }
-            $num = substr($num, 0, -1);
-            $month = substr($month, 0, -1);
-        }else{
-            $num =0;
-            $month =0;
-        }
-        $bar_graph = '<canvas id="graph" data-settings={
-"type": "bar",
-"data": 
-{
-  "labels": [' . $month . '],
-  "datasets": 
-  [{
-    "label": " Le nombre de tickets pour category ' . $category. '  ",
-    "backgroundColor": "#00BFFF",
-    "borderColor": "#00BFFF",
-    "data": [' . $num . ']
-  }]
-},
-"options":
-{
-  "legend":
-  {
-    "display": true
-  }
-}
-}><\/canvas>';
+
+
+            $query = $this->db_connection->prepare('SELECT count(id) FROM ticket where category like :category  group by creation_date');
+            $query->bindParam(':category', $category, \PDO::PARAM_STR);
+            $query->execute();
+            $rows = $query->fetchAll(\PDO::FETCH_ASSOC);
+            $totalCount = sizeof($rows);
+            if ($totalCount > 0) {
+                for ($i = 0; $i < $totalCount; $i++) {
+                    $num .= '"' . implode($rows[$i]) . '",';
+                }
+                $num = substr($num, 0, -1);
+            } else {
+                $num = " ";
+            }
+
+        $bar_graph = '   
+                          "labels": [' . $month . '],
+                          "datasets": 
+                          [{
+                            "label": " Le nombre de tickets pour category ' . $category. '  ",
+                            "backgroundColor": "#00BFFF",
+                            "borderColor": "#00BFFF",
+                            "data": [' . $num . ']
+                          }]
+                    ';
         return $bar_graph;
+
+
     }
-	
 }
