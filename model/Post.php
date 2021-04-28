@@ -174,7 +174,7 @@ class Post {
      */
     public function fermer($id) {
         //Here the use of LIMIT is optional as well, but just in case something goes wrong, we use it to make sure nothing else is deleted.
-        $query = $this->db_connection->prepare('UPDATE ticket SET statusT="terminé" WHERE id = :postId LIMIT 1');
+        $query = $this->db_connection->prepare('UPDATE ticket SET statusT="Clos" WHERE id = :postId LIMIT 1');
         $query->bindParam(':postId', $id, \PDO::PARAM_INT);
         return $query->execute();
     }
@@ -220,12 +220,20 @@ class Post {
             } else {
                 $num = " ";
             }
+
+
         $bar_graph = '   
                       "labels": [' . $month . '],
                       "datasets": 
                       [{
                         "label": " Le nombre de tickets pour category ' . $categoryFullname. '  ",
-                        "backgroundColor": "#00BFFF",
+                        "backgroundColor": ["#FFFFCC",
+        "#CCFFFF",
+        "#FFCCCC",
+        "#99CCCC",
+        "#FFCC99",
+        "#CCCCFF",
+        "#0099CC"],
                         "borderColor": "#00BFFF",
                         "data": [' . $num . ']
                       }]

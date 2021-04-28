@@ -6,19 +6,7 @@ if(isset($_SESSION['currentPage'])){
 }else{
     $page = 1;
 }
-if (isset($_SESSION['totalCount']) || isset($_SESSION['tickets_per_page'])) :
-    if ($_SESSION['totalCount'] === 0){
-        // no posts
-    }else{
-        $totalCount = $_SESSION['totalCount'];
-        $tickets_per_page =$_SESSION['tickets_per_page'];
-        $pageCount = (int)ceil($totalCount/$tickets_per_page);
-        if($page > $pageCount) {
-            // error to user, set page to 1
-            $page = 1;
-        }
-    }
-endif;
+
 if (isset($_SESSION['category'])) :
     $category = $_SESSION['category'];
 endif;

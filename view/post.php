@@ -67,7 +67,7 @@ if(isset($_SESSION['countReponse'])){
                         </button>
                     </form>
                     <?php if($this->post->statusT=="en cours"){?>
-                        <a href = "<?=ROOT_URL?>?p=blogController&amp;a=fermer&amp;id=<?=$this->post->id?>" class="link" >Fermer mon ticket</a >
+                        <a href = "<?=ROOT_URL?>?p=blogController&amp;a=fermer&amp;id=<?=$this->post->id?>" class="link" >Clôturer mon ticket</a >
                     <?php } ?>
                 <?php  } ?>
 

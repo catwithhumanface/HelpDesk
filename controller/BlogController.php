@@ -85,7 +85,15 @@ class BlogController {
         //$this->manager->post = $this->modelPost->getAll();
         $this->manager->getView('blogPosts');
     }
+    /**
+     * Generation of the mon compte page.
+     */
+    public function mon_compte() {
+        //$this->modelAuthentication = getAuthentication($_SESSION['active'], $_POST['password']);
+        //$_SESSION['type_user'] = $_POST['statut'];
 
+        $this->manager->getView('mon_compte');
+    }
     /**
      * Generation of a specific blog post.
      */
@@ -328,6 +336,7 @@ class BlogController {
         $this->manager->post = $this->modelPost->analyse($category);
         $this->manager->getView('analyse');
     }
+
     public function analyseP() {
         $this->modelPost = new Post();
         //$this->manager->category = $this->modelPost->analyseP();

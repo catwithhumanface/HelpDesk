@@ -35,6 +35,14 @@ class Authentication {
         $query->bindParam(':typeu', $type_user, \PDO::PARAM_STR);
         return $query->execute();
     }
+
+
+
+
+
+
+
+
     /**
      * Authentication process
      * @param $username
@@ -69,6 +77,7 @@ class Authentication {
             $result = $query->fetchColumn();
             $result = $result;
             $_SESSION['type_user']=$result;
+
             return true;
         }
     }
