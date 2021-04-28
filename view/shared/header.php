@@ -55,8 +55,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <?php if(empty($_SESSION['active'])): ?>
                                 <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=login" data-hover="Connexion"></a></li>
                             <?php elseif(!empty($_SESSION['active'])) : ?>
-                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=add" data-hover="ADD A NEW POST">Ajouter un nouveau ticket</a></li>
-                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=logout" data-hover="LOGOUT">Se déconnecter</a></li>
+                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=add" data-hover="">Ajouter un nouveau ticket</a></li>
+																  <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=mon_compte" data-hover="">Mon Compte </a></li>
+                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=logout" data-hover="">Se déconnecter</a></li>
                             <?php endif ?>
                             <div class="clearfix"> </div>
 								<li><a href="<?=ROOT_URL?>?p=blogController&amp;a=subscription" data-hover="Inscription"></a></li>

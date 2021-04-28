@@ -230,6 +230,9 @@ class BlogController {
                 //get information of users and up to session!!!
                 session_start();
                 $_SESSION['active'] = $_POST['email'];
+									//$_SESSION['type_user'] = $_POST['statut'];
+
+
                 header('Location: ' . ROOT_URL);
                 exit();
             } else {
@@ -238,6 +241,15 @@ class BlogController {
         }
         $this->manager->getView('login');
     }
+		/**
+		 * Generation of the mon compte page.
+		 */
+		public function mon_compte() {
+					  //$this->modelAuthentication = getAuthentication($_SESSION['active'], $_POST['password']);
+				//	$_SESSION['type_user'] = $_POST['statut'];
+
+				$this->manager->getView('mon_compte');
+		}
 
 		/**
 		 * Generation of the subscription page.
@@ -247,10 +259,10 @@ class BlogController {
 				if (!empty($_SESSION)) {
 						header('Location: ' . ROOT_URL);
 						exit();
-				} else if (isset($_POST['username'], $_POST['password'])) {
-						if($this->modelAuthentication->getAuthentication($_POST['username'], $_POST['password'])) {
+				} else if (isset($_POST['email'], $_POST['password'])) {
+						if($this->modelAuthentication->getAuthentication($_POST['email'], $_POST['password'])) {
 								session_start();
-								$_SESSION['active'] = $_POST['username'];
+								$_SESSION['active'] = $_POST['email'];
 								header('Location: ' . ROOT_URL);
 								exit();
 						} else {
@@ -270,7 +282,7 @@ class BlogController {
             exit();
         } else if (!empty($_SESSION)) {
             $_SESSION = array();
-            session_unset($_SESSION);
+            //session_unset($_SESSION);
             session_destroy();
             setcookie(session_name(),'',0,'/');
         }
