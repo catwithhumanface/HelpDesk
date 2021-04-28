@@ -37,6 +37,18 @@ class Authentication {
             return password_verify($password, $queryRequest->password);
         }
     }
+   
+      public function subscription($data) {
+        $query = $this->db_connection->prepare('INSERT INTO users (username, email, password) VALUES(:username, :email, :password)');
+
+        //Bind values
+        $query->bindParam(':username', $data);
+        $query->bindParam(':email', $data);
+        $query->bindParam(':password', $data);
+
+      
+		echo "<p>Inscription reussie!</p>";
+    }
 
     /**
      * Changing password authentication
