@@ -187,6 +187,15 @@ class BlogController {
             exit('Whoops! Post cannot be deleted.');
 		}
     }
+    public function fermer(){
+        $this->modelPost = new Post();
+        if ($this->modelPost->fermer($this->id)) {
+            header('Location: ' . ROOT_URL."?p=blogController&a=blogPosts");
+        }
+        else {
+            exit('Whoops! Post cannot be deleted.');
+        }
+    }
 
     public function repondre() {
         $this->modelPost = new Post();

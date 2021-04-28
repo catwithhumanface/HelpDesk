@@ -168,6 +168,18 @@ class Post {
     }
 
     /**
+     * Delete a post
+     * @param int $id
+     * @return bool
+     */
+    public function fermer($id) {
+        //Here the use of LIMIT is optional as well, but just in case something goes wrong, we use it to make sure nothing else is deleted.
+        $query = $this->db_connection->prepare('UPDATE ticket SET statusT="terminé" WHERE id = :postId LIMIT 1');
+        $query->bindParam(':postId', $id, \PDO::PARAM_INT);
+        return $query->execute();
+    }
+
+    /**
      * @param string $category
      * @return string
      */
@@ -195,7 +207,7 @@ class Post {
                 }
                 $month = substr($month, 0, -1);
             }
-            $query = $this->db_connection->prepare('SELECT count(id) FROM ticket where category like :category  group by creation_date');
+            $query = $this->db_connection->prepare('SELECT count(id)  FROM ticket where category like :category  group by creation_date');
             $query->bindParam(':category', $category, \PDO::PARAM_STR);
             $query->execute();
             $rows = $query->fetchAll(\PDO::FETCH_ASSOC);
@@ -238,7 +250,7 @@ class Post {
     public function analyseChiffre() {
 
         $new_array= Array();
-        $query = $this->db_connection->query('SELECT count(id) as category FROM ticket group by category ');
+        $query = $this->db_connection->query('SELECT count(id) as nombre, category  FROM ticket group by category order by category ');
         while($row = $query->fetch(\PDO::FETCH_ASSOC)){
             $new_array[] = $row ;
         }

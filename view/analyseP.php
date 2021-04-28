@@ -35,34 +35,36 @@ endif;
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-            <script>
-                var my_2d = Array;
-                my_2d = <?php echo json_encode($this->chiffre) ; ?>
+        <script>
+            var my_2d = Array;
+            my_2d = <?php echo json_encode($this->chiffre) ; ?>
 
 
                 google.charts.load('current', {'packages':['corechart']});
-                // Draw the pie chart when Charts is loaded.
-                google.charts.setOnLoadCallback(draw_my_chart);
-                // Callback that draws the pie chart
-                function draw_my_chart() {
-                    // Create the data table .
-                    var data = new google.visualization.DataTable();
-                    data.addColumn('string', 'Category');
-                    data.addColumn('number', 'Nombre');
-                    data.addRow(["Administratif", parseInt(my_2d[0].category)]);
-                    data.addRow(["Etc", parseInt(my_2d[1].category)]);
-                    data.addRow(["Pédagogique", parseInt(my_2d[2].category)]);
+            // Draw the pie chart when Charts is loaded.
+            google.charts.setOnLoadCallback(draw_my_chart);
+            // Callback that draws the pie chart
+            function draw_my_chart() {
+                // Create the data table .
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Category');
+                data.addColumn('number', 'Nombre');
 
-                    var options = {title:'Analyse des pourcentages des tickets par Category',
-                        width:900,
-                        height:500};
-
-                    // Instantiate and draw the chart
-                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-                    chart.draw(data, options);
+                for(i = 0; i < my_2d.length; i++){
+                    data.addRow([my_2d[i].category, parseInt(my_2d[i].nombre)]);
                 }
 
-</script>
+
+                var options = {title:'Analyse des pourcentages des tickets par Category',
+                    width:900,
+                    height:500};
+
+                // Instantiate and draw the chart
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                chart.draw(data, options);
+            }
+
+        </script>
 
         </body>
     </div>

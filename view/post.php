@@ -66,6 +66,9 @@ if(isset($_SESSION['countReponse'])){
                             Delete
                         </button>
                     </form>
+                    <?php if($this->post->statusT=="en cours"){?>
+                        <a href = "<?=ROOT_URL?>?p=blogController&amp;a=fermer&amp;id=<?=$this->post->id?>" class="link" >Fermer mon ticket</a >
+                    <?php } ?>
                 <?php  } ?>
 
             <?php elseif (empty($_SESSION['active'])) : ?>

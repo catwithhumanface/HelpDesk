@@ -1,7 +1,7 @@
 <?php require_once 'shared/header.php' ?>
 
 <?php
-$categoryA = "Pédagogique";
+$categoryA = "P";
 if (isset($_SESSION['categoryA'])) :
 $categoryA = $_SESSION['categoryA'];
 endif;
