@@ -99,12 +99,12 @@ class Post {
      * @return bool
      */
     public function add(array $queryData) {
-        $query = $this->db_connection->prepare('INSERT INTO ticket (title, content, category, id_user) VALUES(:title, :content, :category, :id_user)');
+        $id_user= (int)$_SESSION['id_user'];
+        $query = $this->db_connection->prepare('INSERT INTO ticket (title, content, category, id_user) VALUES(:title, :content, :category, '.$id_user.')');
         //$query = $this->db_connection->prepare('INSERT INTO posts (title, small_desc, content, author) VALUES(:title, :small_desc, :content, :author)');
         $query->bindValue(':title', $queryData['title']);
         $query->bindValue(':category', $queryData['category']);
         $query->bindValue(':content', $queryData['content']);
-        $query->bindValue(':id_user', $queryData['id_user']);
 		return $query->execute($queryData);
     }
 
@@ -143,9 +143,13 @@ class Post {
 
         $month = " ";
         $num = " ";
-
-
-
+        if($category=="P%"){
+            $categoryFullname="Pédagogique";
+        }else if($category=="A%"){
+            $categoryFullname="Administratif";
+        }else{
+            $categoryFullname="Etc";
+        }
             $query = $this->db_connection->prepare('SELECT date_format(creation_date, "%Y-%m-%d") as date 
                                                         FROM ticket where category like :category group by creation_date');
             $query->bindParam(':category', $category, \PDO::PARAM_STR);
@@ -158,8 +162,6 @@ class Post {
                 }
                 $month = substr($month, 0, -1);
             }
-
-
             $query = $this->db_connection->prepare('SELECT count(id) FROM ticket where category like :category  group by creation_date');
             $query->bindParam(':category', $category, \PDO::PARAM_STR);
             $query->execute();
@@ -173,19 +175,40 @@ class Post {
             } else {
                 $num = " ";
             }
-
         $bar_graph = '   
-                          "labels": [' . $month . '],
-                          "datasets": 
-                          [{
-                            "label": " Le nombre de tickets pour category ' . $category. '  ",
-                            "backgroundColor": "#00BFFF",
-                            "borderColor": "#00BFFF",
-                            "data": [' . $num . ']
-                          }]
+                      "labels": [' . $month . '],
+                      "datasets": 
+                      [{
+                        "label": " Le nombre de tickets pour category ' . $categoryFullname. '  ",
+                        "backgroundColor": "#00BFFF",
+                        "borderColor": "#00BFFF",
+                        "data": [' . $num . ']
+                      }]
                     ';
         return $bar_graph;
+    }
 
+    /**
+     * Get all posts
+     * @return array
+     */
+    public function analyseP() {
 
+        $new_array= Array();
+        $query = $this->db_connection->query('SELECT category, count(id) FROM ticket group by category ');
+        //$query->fetch(\PDO::FETCH_ASSOC);
+        while($row = $query->fetch(\PDO::FETCH_ASSOC)){
+            $new_array[] = $row ;
+        }
+        return $new_array;
+    }
+    public function analyseChiffre() {
+
+        $new_array= Array();
+        $query = $this->db_connection->query('SELECT count(id) as category FROM ticket group by category ');
+        while($row = $query->fetch(\PDO::FETCH_ASSOC)){
+            $new_array[] = $row ;
+        }
+        return $new_array;
     }
 }

@@ -31,7 +31,7 @@ if(isset($_SESSION['type_user'])){
         <div class="container">
             <div class="h2_content">
                 <h2><?=htmlspecialchars($this->post->title)?></h2>
-                <h3>Statut : <?=htmlspecialchars($this->post->status)?></h3>
+                <h3>Statut : <?=htmlspecialchars($this->post->statusT)?></h3>
             </div>
             <div class="det_text">
                 <p><?=nl2br(htmlspecialchars($this->post->content))?></p>
@@ -39,7 +39,7 @@ if(isset($_SESSION['type_user'])){
             <ul class="links">
                 <li><i class="date"> </i><span class="icon_text"><?=$this->post->creation_date?></span></li>
                 <li><a href="#"><i class="admin"> </i><span class="icon_text"><?=$post_username?></span></a></li>
-                <?php if ($this->post->status=="en cours" && $type_user!=="etudiant"):?>
+                <?php if ($this->post->statusT=="en cours" && $type_user!=="etudiant"):?>
                     <li><a href = "<?=ROOT_URL?>?p=blogController&amp;a=repondre&amp;id=<?=$this->post->id?>" class="link"> Repondre</a ></li>
                 <?php endif?>
             </ul>

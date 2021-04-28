@@ -1,5 +1,6 @@
 <?php require_once 'shared/header.php' ?>
 <?php
+$pageCount =1;
 if(isset($_SESSION['currentPage'])){
     $page = $_SESSION['currentPage'];
 }else{

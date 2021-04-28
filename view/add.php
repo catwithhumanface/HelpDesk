@@ -52,7 +52,6 @@
                                         <option value="Pédagogique">Pédagogique</option>
                                         <option value="Etc">Etc</option>
                                     </select>
-
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>

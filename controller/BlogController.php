@@ -108,11 +108,11 @@ class BlogController {
     public function add() {
         $this->modelPost = new Post();
         if (!empty($_POST['add_submit'])) { // Making sure that the sumbit button is coming from the add.php page (containing the add_submit button) {
-            if (isset($_POST['title'], $_POST['id_user'], $_POST['content'], $_POST['category'])<=50  && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['id_user']) && !empty($_POST['content']) && !empty($_POST['category'])) { // Allow a maximum of 50 characters and making sure the input we get is not empty (a bit equal to required="required" in the HTML form, but who trusts HTML anyways? :D)
-                if(!ctype_space($_POST['title']) && !ctype_space($_POST['id_user']) && !ctype_space($_POST['content']) && !ctype_space($_POST['category'])) { // Making sure there's a contact in the input we got that is not all full spaces
-					if(mb_strlen($_POST['title']) >= 3 && mb_strlen($_POST['id_user']) >= 0 && mb_strlen($_POST['content']) >= 3 && mb_strlen($_POST['category']) >= 0) { // Making sure each input is more than 3 characters
-						if(preg_match('/\s/',$_POST['id_user']) >= 0 && preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
-							$data = array('title' => htmlspecialchars($_POST['title']), 'id_user' => htmlspecialchars($_POST['id_user']), 'content' => htmlspecialchars($_POST['content']), 'category' => htmlspecialchars($_POST['category']));
+                if (isset($_POST['title'], $_POST['category'], $_POST['content'])  <= 50 && !empty($_POST['title']) && !empty($_POST['category']) && !empty($_POST['content'])) {
+                    if(!ctype_space($_POST['title']) && !ctype_space($_POST['category']) && !ctype_space($_POST['content'])) {
+                        if(mb_strlen($_POST['title']) >= 3 && mb_strlen($_POST['category']) >= 3 && mb_strlen($_POST['content']) >= 3 ) {
+                            if(preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
+							$data = array('title' => htmlspecialchars($_POST['title']), 'content' => htmlspecialchars($_POST['content']), 'category' => htmlspecialchars($_POST['category']));
 							if ($this->modelPost->add($data)) {
 								$this->manager->msgSuccess = 'The post was added with success.';
 							} else {
@@ -226,9 +226,9 @@ class BlogController {
             header('Location: ' . ROOT_URL);
             exit();
         } else if (isset($_POST['email'], $_POST['password'])) {
+
             if($this->modelAuthentication->getAuthentication($_POST['email'], $_POST['password'])) {
                 //get information of users and up to session!!!
-                session_start();
                 $_SESSION['active'] = $_POST['email'];
                 header('Location: ' . ROOT_URL);
                 exit();
@@ -244,18 +244,18 @@ class BlogController {
 		 */
 		public function subscription() {
             $this->modelAuthentication = new Authentication();
-				if (!empty($_SESSION)) {
-						header('Location: ' . ROOT_URL);
-						exit();
-				} else if (isset($_POST['username'], $_POST['password'])) {
-						if($this->modelAuthentication->getAuthentication($_POST['username'], $_POST['password'])) {
-								session_start();
-								$_SESSION['active'] = $_POST['username'];
+				if (isset($_POST['email'], $_POST['password'], $_POST['typeuser'], $_POST['username'])) {
+				    $this->manager->check =$this->modelAuthentication->checkEmail($_POST['email']);
+                    if($this->manager->check){
+						if($this->modelAuthentication->join($_POST['email'], $_POST['password'], $_POST['typeuser'], $_POST['username'])) {
 								header('Location: ' . ROOT_URL);
 								exit();
 						} else {
 								$this->manager->msgError = 'Your login credentials are incorrect. Please try again later.';
 						}
+                    }else{
+                        $this->manager->msgError = 'Veuillez rentrer une autre adresse mail';
+                    }
 				}
 				$this->manager->getView('subscription');
 		}
@@ -310,5 +310,10 @@ class BlogController {
         $this->manager->post = $this->modelPost->analyse($category);
         $this->manager->getView('analyse');
     }
-
+    public function analyseP() {
+        $this->modelPost = new Post();
+        //$this->manager->category = $this->modelPost->analyseP();
+        $this->manager->chiffre = $this->modelPost->analyseChiffre();
+        $this->manager->getView('analyseP');
+    }
 }

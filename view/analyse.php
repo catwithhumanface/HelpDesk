@@ -1,3 +1,5 @@
+<?php require_once 'shared/header.php' ?>
+
 <?php
 $categoryA = "Pédagogique";
 if (isset($_SESSION['categoryA'])) :
@@ -5,46 +7,28 @@ $categoryA = $_SESSION['categoryA'];
 endif;
 ?>
 <div class="content">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.5.0/materia/bootstrap.min.css">
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-
-
-        function drawChart() {
-
-            var labelpie=['Category','Nombre']
-
-            var data = google.visualization.arrayToDataTable(
-                [
-                    labelpie,
-                    ['Pédagogique',1],
-                    ['Administratif',3],
-                    ['Etc',2]
-                ]);
-
-            var options = {
-                title: 'La pourcentage sur les catégories de tickets'
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-            chart.draw(data, options);
-        }
-    </script>
     </head>
 
     <body>
 
     <div class="container">
-
+        <div class="row" style="padding-bottom:30px;">
+            <div class="col-md-3 copy"style="width:500px; background-color:skyblue;  margin-right:200px;">
+                <h3><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyse">Nombre ticket par categories et dates</a></h3>
+            </div>
+            <div class="col-md-3 copy"style="width:430px;  background-color:skyblue;"  >
+                <h3><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyseP">Analyse des pourcentages des catégories</a></h3>
+            </div>
+        </div>
         <div class="row">
             <div class="col text-center" style="margin-top: 25px; margin-bottom: 25px;">
 
-                <select class="custom-select" id="selDepartment" name="selDepartment" onchange="getCategory();">
+                <select class="custom-select"  style="height:30px;"id="selDepartment" name="selDepartment" onchange="getCategory();">
                     <?php if ($categoryA=='P'):?>
                     <option value="P" selected>Pédagogique</option>
                     <option value="E">Etc</option>
@@ -104,14 +88,8 @@ endif;
                         options: {"legend":
                                     {"display": true}}
                                 }) ;
-
                 }
             });
-
-
-
-
-
         });
 
     </script>
@@ -126,3 +104,4 @@ endif;
 </div>
 
 </html>
+<?php require_once 'shared/footer.php' ?>

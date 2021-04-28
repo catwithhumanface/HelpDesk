@@ -22,40 +22,64 @@ class Authentication {
      * Authentication process
      * @param $username
      * @param $password
+     * @param $type_user
+     * @param $username
+     * @return bool
+     */
+    public function join($email, $password, $type_user, $username) {
+        $query = $this->db_connection->prepare('INSERT INTO users (email, username, password, type_user)
+                                                VALUES (:email, :username, :password, :typeu)');
+        $query->bindParam(':email', $email, \PDO::PARAM_STR);
+        $query->bindParam(':username', $username, \PDO::PARAM_STR);
+        $query->bindParam(':password', $password, \PDO::PARAM_STR);
+        $query->bindParam(':typeu', $type_user, \PDO::PARAM_STR);
+        return $query->execute();
+    }
+    /**
+     * Authentication process
+     * @param $username
+     * @param $password
      * @return bool
      */
     public function getAuthentication($email, $password) {
-        $query = $this->db_connection->prepare('SELECT email, password, username, id_user, type_user FROM users WHERE email = :email ');
+        $query = $this->db_connection->prepare('SELECT * from users where email=:email and password=:password');
         $query->bindParam(':email', $email, \PDO::PARAM_STR);
-        //$query->bindParam(':pwd', $password, \PDO::PARAM_STR);
+        $query->bindParam(':password', $password, \PDO::PARAM_STR);
         $query->execute();
-        //Password hashing tutorial : http://www.ibm.com/developerworks/library/wa-php-renewed_2/index.html
-        //Password verify doc : http://php.net/manual/en/function.password-verify.php
-        //Here, as the blog won't have a login, we won't use password_hash, only password verify to get the credentials from the database
-        $queryRequest = $query->fetch(\PDO::FETCH_OBJ);
-
-        if($queryRequest) {
-            /*
-            $query = $this->db_connection->prepare('SELECT * FROM user where email=:email');
+        $result = $query->fetch(\PDO::FETCH_OBJ);
+        if(empty($result)) {
+            return false;
+        }else{
+            $query = $this->db_connection->prepare('SELECT username from users where email=:email');
             $query->bindParam(':email', $email, \PDO::PARAM_STR);
             $query->execute();
-            $rows = $query->fetch(\PDO::FETCH_ASSOC);
-            $id_user = $rows['id_user'];
-            $_SESSION['id_user'] =  $id_user;
-            */
-           // $query = $this->db_connection->prepare('SELECT username FROM users WHERE email = :email');
-            //$query->bindParam(':email', $email, \PDO::PARAM_STR);
-            //$query->execute();
-            //$username = $query->fetch(\PDO::FETCH_OBJ);
+            $result = $query->fetchColumn();
+            $_SESSION['username']=$result;
 
-           // $_SESSION['username'] =  __toString($username);
-            //return 1;
-            $_SESSION['username'] = $queryRequest->username;
-            $_SESSION['id_user'] = $queryRequest->id_user;
-            $_SESSION['type_user'] = $queryRequest->type_user;
-            return 1;
-            //return password_verify($password, $queryRequest->password);
-
+            $query = $this->db_connection->prepare('SELECT id_user from users where email=:email');
+            $query->bindParam(':email', $email, \PDO::PARAM_STR);
+            $query->execute();
+            $result = $query->fetchColumn();
+            $result = (int)$result;
+            $_SESSION['id_user']=$result;
+            return true;
+        }
+    }
+    /**
+     * Authentication process
+     * @param $username
+     * @param $password
+     * @return bool
+     */
+    public function checkEmail($email) {
+        $query = $this->db_connection->prepare('SELECT email FROM users WHERE email = :email ');
+        $query->bindParam(':email', $email, \PDO::PARAM_STR);
+        $query->execute();
+        $result = $query->fetch(\PDO::FETCH_OBJ);
+        if(empty($result)) {
+            return true;
+        }else{
+            return false;
         }
     }
 
