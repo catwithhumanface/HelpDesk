@@ -90,7 +90,27 @@ class Post {
         $usernameStr = implode($usernameObj);
         $_SESSION['post_username'] = $usernameStr ;
 
+        $query = $this->db_connection->prepare('SELECT count(id_reponse) FROM reponse WHERE id = :postId LIMIT 1');
+        $query->bindParam(':postId', $id, \PDO::PARAM_INT);
+        $query->execute();
+        $countReponse = $query->fetch(\PDO::FETCH_ASSOC);
+        $countReponseInt = implode($countReponse);
+        $_SESSION['countReponse'] = $countReponseInt ;
+
         return $row;
+    }
+    /**
+     * Get a post by it's ID
+     * @param int $id
+     * @return mixed
+     */
+    public function getReponse($id) {
+        //Normally we wouldn't be using LIMIT here, as the ID is unique anyways. But it's better to have several check ups to have exactly what we need.
+        $query = $this->db_connection->prepare('SELECT * FROM reponse WHERE id = :postId LIMIT 1');
+        $query->bindParam(':postId', $id, \PDO::PARAM_INT);
+        $query->execute();
+        $rowsToReturn = $query->fetchAll(\PDO::FETCH_OBJ);
+        return $rowsToReturn;
     }
 
     /**
@@ -106,6 +126,19 @@ class Post {
         $query->bindValue(':category', $queryData['category']);
         $query->bindValue(':content', $queryData['content']);
 		return $query->execute($queryData);
+    }
+    /**
+     * Add a post
+     * @param string $content
+     * @return bool
+     */
+    public function addReponse($id, $content) {
+        $id_user= (int)$_SESSION['id_user'];
+        $query = $this->db_connection->prepare('INSERT INTO reponse (content, id_user, id) VALUES(:content, '.$id_user.', '.$id.')');
+        //$query = $this->db_connection->prepare('INSERT INTO posts (title, small_desc, content, author) VALUES(:title, :small_desc, :content, :author)');
+        $query->bindParam(':content', $content, \PDO::PARAM_STR);
+        return $query->execute();
+
     }
 
     /**
@@ -129,7 +162,7 @@ class Post {
      */
     public function delete($id) {
 		//Here the use of LIMIT is optional as well, but just in case something goes wrong, we use it to make sure nothing else is deleted.
-        $query = $this->db_connection->prepare('DELETE FROM posts WHERE id = :postId LIMIT 1');
+        $query = $this->db_connection->prepare('DELETE FROM ticket WHERE id = :postId LIMIT 1');
         $query->bindParam(':postId', $id, \PDO::PARAM_INT);
         return $query->execute();
     }

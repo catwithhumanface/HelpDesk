@@ -92,6 +92,7 @@ class BlogController {
     public function post() {
         $this->modelPost = new Post();
         $this->manager->post = $this->modelPost->getById($this->id); // Get the specific post using it's ID
+        //$this->manager->postReponse = $this->modelPost->getByIdReponse($this->id);
         $this->manager->getView('post');
     }
 
@@ -179,23 +180,23 @@ class BlogController {
      */
     public function delete(){
         $this->modelPost = new Post();
-        if (empty($_POST['delete']) && $this->modelPost->delete($this->id)) {
-            header('Location: ' . ROOT_URL);
+        if (!empty($_POST['delete']) && $this->modelPost->delete($this->id)) {
+            header('Location: ' . ROOT_URL."?p=blogController&a=blogPosts");
 		}
         else {
             exit('Whoops! Post cannot be deleted.');
 		}
     }
-    // a realiser
+
     public function repondre() {
         $this->modelPost = new Post();
         if (!empty($_POST['add_submit'])) { // Making sure that the sumbit button is coming from the add.php page (containing the add_submit button) {
-            if (isset($_POST['title'], $_POST['id_user'], $_POST['content'], $_POST['category']) && mb_strlen($_POST['title']) <= 50 && !empty($_POST['title']) && !empty($_POST['id_user']) && !empty($_POST['content']) && !empty($_POST['category'])) { // Allow a maximum of 50 characters and making sure the input we get is not empty (a bit equal to required="required" in the HTML form, but who trusts HTML anyways? :D)
-                if(!ctype_space($_POST['title']) && !ctype_space($_POST['id_user']) && !ctype_space($_POST['content']) && !ctype_space($_POST['category'])) { // Making sure there's a contact in the input we got that is not all full spaces
-                    if(mb_strlen($_POST['title']) >= 3 && mb_strlen($_POST['id_user']) >= 0 && mb_strlen($_POST['content']) >= 3 && mb_strlen($_POST['category']) >= 0) { // Making sure each input is more than 3 characters
-                        if(preg_match('/\s/',$_POST['id_user']) >= 0 && preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
-                            $data = array('title' => htmlspecialchars($_POST['title']), 'id_user' => htmlspecialchars($_POST['id_user']), 'content' => htmlspecialchars($_POST['content']), 'category' => htmlspecialchars($_POST['category']));
-                            if ($this->modelPost->add($data)) {
+            if (isset( $_POST['content']) && !empty($_POST['content']) ) { // Allow a maximum of 50 characters and making sure the input we get is not empty (a bit equal to required="required" in the HTML form, but who trusts HTML anyways? :D)
+                if(!ctype_space($_POST['content']) ) { // Making sure there's a contact in the input we got that is not all full spaces
+                    if(mb_strlen($_POST['content']) >= 3) { // Making sure each input is more than 3 characters
+                        if( preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
+
+                            if ($this->modelPost->addReponse($this->id, ($_POST['content']) ) ){
                                 $this->manager->msgSuccess = 'The post was added with success.';
                             } else {
                                 $this->manager->msgError = 'An error has occured. Please contact the site admin.';
@@ -214,8 +215,16 @@ class BlogController {
                 $this->manager->msgError = 'Kindly fill all of the required fields before you submit, and make sure the title is less than 50 characters!';
             }
         }
-        $this->manager->getView('add');
+        $this->manager->getView('addReponse');
     }
+
+    public function reponse() {
+        $this->modelPost = new Post();
+        $this->manager->post = $this->modelPost->getReponse($this->id);
+        $this->manager->getView('reponses');
+    }
+
+
 
     /**
      * Generation of the login page.

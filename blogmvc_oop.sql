@@ -45,8 +45,17 @@ INSERT INTO users (username, password) VALUES
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
-
-
+CREATE TABLE IF NOT EXISTS users (
+    id_user int(10) NOT NULL AUTO_INCREMENT,
+    email varchar(255) NOT NULL,
+    name varchar(255) NOT NULL,
+    firstrname varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    promotion varchar(255) NULL,
+    creation_date timestamp NOT NULL DEFAULT NOW(),
+    type_user varchar(255) NOT NULL DEFAULT "etudiant",
+    PRIMARY KEY (id_user)
+    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS ticket (
     id int(10) NOT NULL AUTO_INCREMENT,
@@ -60,14 +69,15 @@ CREATE TABLE IF NOT EXISTS ticket (
     KEY fk_id_user(id_user)
     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS users (
-  id_user int(10) NOT NULL AUTO_INCREMENT,
-  email varchar(255) NOT NULL,
-  name varchar(255) NOT NULL,
-  firstrname varchar(255) NOT NULL,
-  password varchar(255) NOT NULL,
-    promotion varchar(255) NULL,
-  creation_date timestamp NOT NULL DEFAULT NOW(),
-  type_user varchar(255) NOT NULL DEFAULT "etudiant",
-  PRIMARY KEY (id_user)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS reponse (
+    id_reponse int(10) NOT NULL AUTO_INCREMENT,
+    content text NOT NULL,
+    id_user int(10) NOT NULL,
+    id int(10) NOT NULL,
+    creation_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    PRIMARY KEY (id_reponse),
+    KEY fk_id_tiket(id)
+    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+

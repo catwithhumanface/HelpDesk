@@ -62,6 +62,13 @@ class Authentication {
             $result = $query->fetchColumn();
             $result = (int)$result;
             $_SESSION['id_user']=$result;
+
+            $query = $this->db_connection->prepare('SELECT type_user from users where email=:email');
+            $query->bindParam(':email', $email, \PDO::PARAM_STR);
+            $query->execute();
+            $result = $query->fetchColumn();
+            $result = $result;
+            $_SESSION['type_user']=$result;
             return true;
         }
     }

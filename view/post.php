@@ -26,6 +26,11 @@ if(isset($_SESSION['type_user'])){
 }else{
     $type_user = "etudiant";
 }
+if(isset($_SESSION['countReponse'])){
+    $countReponse = $_SESSION['countReponse'];
+}else{
+    $countReponse = "0";
+}
 ?>
     <div class="details">
         <div class="container">
@@ -39,11 +44,14 @@ if(isset($_SESSION['type_user'])){
             <ul class="links">
                 <li><i class="date"> </i><span class="icon_text"><?=$this->post->creation_date?></span></li>
                 <li><a href="#"><i class="admin"> </i><span class="icon_text"><?=$post_username?></span></a></li>
-                <?php if ($this->post->statusT=="en cours" && $type_user!=="etudiant"):?>
+                <?php if ($this->post->statusT=="en cours" && $type_user!="etudiant"):?>
                     <li><a href = "<?=ROOT_URL?>?p=blogController&amp;a=repondre&amp;id=<?=$this->post->id?>" class="link"> Repondre</a ></li>
                 <?php endif?>
             </ul>
             <br/><br/>
+                <?php if ($countReponse !="0") : ?>
+                    <button><a href = "<?=ROOT_URL?>?p=blogController&amp;a=reponse&amp;id=<?=$this->post->id?>">Voir Reponse ( <?php echo $countReponse ; ?> )</a></button>
+                <?php endif;?>
             <!-- If user is not logged in -->
             <?php if(!empty($_SESSION['active'])) : ?>
                 <?php

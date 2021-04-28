@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="955791b5-2f26-4de7-9d58-008178f1b034" name="Default Changelist" comment="partie Analyse intégrée, MVC">
-      <change afterPath="$PROJECT_DIR$/view/analyseP.php" afterDir="false" />
+    <list default="true" id="955791b5-2f26-4de7-9d58-008178f1b034" name="Default Changelist" comment="Analyse tickets intégrée,&#10;Création ticket,&#10;Inscription,&#10;Login">
+      <change afterPath="$PROJECT_DIR$/view/addReponse.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/reponses.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blogmvc_oop.sql" beforeDir="false" afterPath="$PROJECT_DIR$/blogmvc_oop.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/BlogController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Authentication.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/Authentication.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/add.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/add.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/analyse.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/analyse.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/blogPosts.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/blogPosts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/post.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/subscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/subscription.php" afterDir="false" />
     </list>
     <list id="653eea27-46da-4097-a488-75e1dfd165b5" name="Added a change password option in login page" comment="Added a change password option in login page&#10;&#10;(cherry picked from commit 366a35e837f5e7a2bfdf1b07e10e0d18ea4a607f)">
       <changelist_data name="elshobokshy" email="islam20088@hotmail.com" date="1488470798000" />
@@ -33,6 +31,14 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/controller/BlogController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
@@ -70,7 +76,7 @@
       <updated>1619264318568</updated>
       <workItem from="1619264323549" duration="10926000" />
       <workItem from="1619364791549" duration="5627000" />
-      <workItem from="1619380482935" duration="83646000" />
+      <workItem from="1619380482935" duration="87935000" />
     </task>
     <task id="LOCAL-00001" summary="db pb solved">
       <created>1619274136571</created>
@@ -128,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619565256169</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Analyse tickets intégrée,&#10;Création ticket,&#10;Inscription,&#10;Login">
+      <created>1619613005614</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1619613005614</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,6 +237,7 @@
     <MESSAGE value="Forum sorting, filtering done&#10;Ticket edit/delete button sorting done (for author only)&#10;Ticket edit function done&#10;Ticket repondre button sorting done (for professeur and administrateur)" />
     <MESSAGE value="commit" />
     <MESSAGE value="partie Analyse intégrée, MVC" />
-    <option name="LAST_COMMIT_MESSAGE" value="partie Analyse intégrée, MVC" />
+    <MESSAGE value="Analyse tickets intégrée,&#10;Création ticket,&#10;Inscription,&#10;Login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Analyse tickets intégrée,&#10;Création ticket,&#10;Inscription,&#10;Login" />
   </component>
 </project>
