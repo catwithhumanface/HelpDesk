@@ -35,7 +35,7 @@ if(isset($_SESSION['countReponse'])){
     <div class="details">
         <div class="container">
             <div class="h2_content">
-                <h2><?=htmlspecialchars($this->post->title)?></h2>
+                <h2>Titre : <?=htmlspecialchars($this->post->title)?></h2>
                 <h3>Statut : <?=htmlspecialchars($this->post->statusT)?></h3>
             </div>
             <div class="det_text">
@@ -61,19 +61,16 @@ if(isset($_SESSION['countReponse'])){
                 $username = $_SESSION['username'];
 
                 if($id_user==$this->post->id_user) {?>
-                    <a href = "<?=ROOT_URL?>?p=blogController&amp;a=edit&amp;id=<?=$this->post->id?>" class="link" > Edit</a >
-                    <form name="delete" action="<?=ROOT_URL?>?p=blogController&amp;a=delete&amp;id=<?=$this->post->id?>" method="post" class="link">
-                        <button type="submit" name="delete" value="1" class="bold">
-                            Delete
-                        </button>
-                    </form>
+                    <a href = "<?=ROOT_URL?>?p=blogController&amp;a=edit&amp;id=<?=$this->post->id?>" class="link" > Modifier</a >
+                    <a href="<?=ROOT_URL?>?p=blogController&amp;a=delete&amp;id=<?=$this->post->id?>" class="link">
+                        Supprimer</a>
                     <?php if($this->post->statusT=="en cours"){?>
                         <a href = "<?=ROOT_URL?>?p=blogController&amp;a=fermer&amp;id=<?=$this->post->id?>" class="link" >Clôturer mon ticket</a >
                     <?php } ?>
                 <?php  } ?>
 
             <?php elseif (empty($_SESSION['active'])) : ?>
-                <p class="addFirstPost">Please <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">login</a> to add/edit/delete.</p>
+                <p class="addFirstPost">Veuillez <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">se connecter </a>pour modifier ou supprimer votre ticket</p>
             <?php endif ?>
 
         </div>

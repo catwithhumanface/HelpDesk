@@ -22,9 +22,6 @@ class BlogController {
         // Get the Model class in order for it to be used directly in all of this Controller
         $this->manager->getModel('Post');
         $this->manager->getModel('Authentication');
-        //$this->modelPost = new Post();
-        //$this->modelAuthentication = new Authentication();
-        // The ID of the post directly in the constructor
 		if(empty($_GET['id'])){
 			$this->id = 0;
 		} else {
@@ -37,7 +34,6 @@ class BlogController {
      */
 	public function home() {
         $this->modelPost = new Post();
-		//$this->manager->post = $this->modelPost->getAll();
         if(isset($_GET['cp']) && !empty($_GET["cp"])) {
             $currentPage = (int)$_GET['cp'];
         }else {
@@ -113,6 +109,9 @@ class BlogController {
 
         $this->manager->getView('mon_compte');
     }
+    /**
+     * Generation of the mes reponses via la page Mon compte
+     */
 		public function mon_compte_mesreponses() {
 				$this->modelPost = new Post();
 				//$this->manager->post = $this->modelPost->getById($this->id);
@@ -123,7 +122,7 @@ class BlogController {
 				$this->manager->getView('mon_compte_mesreponses');
 		}
     /**
-     * Generation of a specific blog post.
+     * Generation of a specific ticket post.
      */
     public function post() {
         $this->modelPost = new Post();
@@ -140,7 +139,7 @@ class BlogController {
     }
 
     /**
-     * Generation of the add post page where we're able to create a new post.
+     * Generation of the add ticket page where we're able to create a new ticket.
      */
     public function add() {
         $this->modelPost = new Post();
@@ -151,29 +150,29 @@ class BlogController {
                             if(preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
 							$data = array('title' => htmlspecialchars($_POST['title']), 'content' => htmlspecialchars($_POST['content']), 'category' => htmlspecialchars($_POST['category']));
 							if ($this->modelPost->add($data)) {
-								$this->manager->msgSuccess = 'The post was added with success.';
+								$this->manager->msgSuccess = 'Votre ticket a été créé.';
+                                header('Location: ' . ROOT_URL."?p=blogController&a=blogPosts");
 							} else {
-								$this->manager->msgError = 'An error has occured. Please contact the site admin.';
+								$this->manager->msgError = 'Une erreur s\'est produite. Veuillez Réessayer.';
 							}
 						} else {
-							$this->manager->msgError = 'The small description and/or content can\'t be consisted of only 1 word. 2 words minimum.';
+							$this->manager->msgError = 'Le contenu du ticket doit contenir au minimum deux mots.';
 						}
 					} else {
-						$this->manager->msgError = 'Minimum 3 letters required for each field.';
+						$this->manager->msgError = 'Minimum 3 lettres sont demandé à chaque case.';
 					}
 				} else {
-					$this->manager->msgError = 'Please don\'t fill any of the fields with blank spaces.';
+					$this->manager->msgError = 'Veuillez ne pas remplir chaque case seulement avec espace vide.';
 				}
             } else {
-				// Might not be required, as we're already checking inside the html that everything is okay, but double checking is always nice.
-                $this->manager->msgError = 'Kindly fill all of the required fields before you submit, and make sure the title is less than 50 characters!';
+                $this->manager->msgError = 'Veuillez rentrer toutes les cases demandées. Votre titre peut au maximum contenir 50 caractères!';
             }
         }
         $this->manager->getView('add');
     }
 
     /**
-     * Generation of the edit post page where we're able to update an existing post.
+     * Generation of the edit ticket page where we're able to update an existing ticket.
      */
     public function edit() {
         $this->modelPost = new Post();
@@ -184,55 +183,59 @@ class BlogController {
 					    if(preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
 							$data = array('postId' => $this->id, 'title' => htmlspecialchars($_POST['title']), 'category' => htmlspecialchars($_POST['category']), 'content' => htmlspecialchars($_POST['content']) );
 							if ($this->modelPost->update($data)) {
-								$this->manager->msgSuccess = 'The post was updated with success.';
+								$this->manager->msgSuccess = 'Votre ticket a bien été modifié.';
 							}
 							else {
-								$this->manager->msgError = 'An error has occured. Please contact the site admin.';
+								$this->manager->msgError = 'Une erreur s\'est produite. Veuillez Réessayer.';
 							}
 						} else {
-							$this->manager->msgError = 'The small description and/or content can\'t be consisted of only 1 word. 2 words minimum.';
+							$this->manager->msgError = 'Le contenu du ticket doit contenir au minimum deux mots.';
 						}
 					} else {
-						$this->manager->msgError = 'Minimum 3 letters required.';
+						$this->manager->msgError = 'Minimum 3 lettres sont demandé à chaque case.';
 					}
 
 				} else {
-					$this->manager->msgError = 'Please don\'t fill any of the fields with blank spaces.';
+					$this->manager->msgError = 'Veuillez ne pas remplir chaque case seulement avec espace vide.';
 				}
             }
             else {
-                $this->manager->msgError = 'Kindly fill all of the required fields before you submit, and make sure the title is less than 50 characters!';
+                $this->manager->msgError = 'Veuillez rentrer toutes les cases demandées. Votre titre peut au maximum contenir 50 caractères!';
             }
         }
 
 		// We get the data of the post
         $this->manager->post = $this->modelPost->getById($this->id);
-
         $this->manager->getView('edit');
     }
 
     /**
-     * Generation of the delete post button.
+     * Generation of the delete ticket button.
      */
     public function delete(){
         $this->modelPost = new Post();
-        if (!empty($_POST['delete']) && $this->modelPost->delete($this->id)) {
+        if ($this->modelPost->delete($this->id)) {
             header('Location: ' . ROOT_URL."?p=blogController&a=blogPosts");
 		}
         else {
-            exit('Whoops! Post cannot be deleted.');
+            exit('Whoops! Votre ticket ne peut pas être supprimé.');
 		}
     }
+    /**
+     * Generation of the fermeture ticket button.
+     */
     public function fermer(){
         $this->modelPost = new Post();
         if ($this->modelPost->fermer($this->id)) {
             header('Location: ' . ROOT_URL."?p=blogController&a=blogPosts");
         }
         else {
-            exit('Whoops! Post cannot be deleted.');
+            exit('Whoops! Votre ticket ne peut pas être supprimé.');
         }
     }
-
+    /**
+     * Generation of the repondre button (seulement pour professeur et admin)
+     */
     public function repondre() {
         $this->modelPost = new Post();
         if (!empty($_POST['add_submit'])) { // Making sure that the sumbit button is coming from the add.php page (containing the add_submit button) {
@@ -242,40 +245,41 @@ class BlogController {
                         if( preg_match('/\s/',$_POST['content']) >= 1) { // Making sure content and the small description are more than 1 word
 
                             if ($this->modelPost->addReponse($this->id, ($_POST['content']) ) ){
-                                $this->manager->msgSuccess = 'The post was added with success.';
+                                $this->manager->msgSuccess = 'Votre réponse a bien été ajouté.';
                             } else {
-                                $this->manager->msgError = 'An error has occured. Please contact the site admin.';
+                                $this->manager->msgError = 'Une erreur s\'est produite. Veuillez Réessayer.';
                             }
                         } else {
-                            $this->manager->msgError = 'The small description and/or content can\'t be consisted of only 1 word. 2 words minimum.';
+                            $this->manager->msgError = 'Le contenu du ticket doit contenir au minimum deux mots.';
                         }
                     } else {
-                        $this->manager->msgError = 'Minimum 3 letters required for each field.';
+                        $this->manager->msgError = 'Minimum 3 lettres sont demandé à chaque case.';
                     }
                 } else {
-                    $this->manager->msgError = 'Please don\'t fill any of the fields with blank spaces.';
+                    $this->manager->msgError =  'Veuillez ne pas remplir chaque case seulement avec espace vide.';
                 }
-            } else {
-                // Might not be required, as we're already checking inside the html that everything is okay, but double checking is always nice.
-                $this->manager->msgError = 'Kindly fill all of the required fields before you submit, and make sure the title is less than 50 characters!';
+            }  else {
+                $this->manager->msgError = 'Veuillez rentrer toutes les cases demandées. Votre titre peut au maximum contenir 50 caractères!';
             }
         }
         $this->manager->getView('addReponse');
     }
-
+    /**
+     * Generation of the get reponses
+     */
     public function reponse() {
         $this->modelPost = new Post();
         $this->manager->post = $this->modelPost->getReponse($this->id);
         $this->manager->getView('reponses');
     }
+    /**
+     * Generation of mes reponses
+     */
 		public function mesReponses() {
 				$this->modelPost = new Post();
 				$this->manager->post = $this->modelPost->getMyReponse();
 				$this->manager->getView('mesReponses');
 		}
-
-
-
     /**
      * Generation of the login page.
      */
@@ -292,7 +296,7 @@ class BlogController {
                 header('Location: ' . ROOT_URL);
                 exit();
             } else {
-                $this->manager->msgError = 'Your login credentials are incorrect. Please try again later.';
+                $this->manager->msgError = 'Vos informations ne sont pas correctes. Veuillez réessayer.';
             }
         }
         $this->manager->getView('login');
@@ -310,10 +314,10 @@ class BlogController {
 								header('Location: ' . ROOT_URL);
 								exit();
 						} else {
-								$this->manager->msgError = 'Your login credentials are incorrect. Please try again later.';
+								$this->manager->msgError ='Vos informations ne sont pas correctes. Veuillez réessayer.';
 						}
                     }else{
-                        $this->manager->msgError = 'Veuillez rentrer une autre adresse mail';
+                        $this->manager->msgError = 'Cette adresse mail existe déjà. Veuillez rentrer une autre adresse mail';
                     }
 				}
 				$this->manager->getView('subscription');
@@ -357,7 +361,9 @@ class BlogController {
         }
         $this->manager->getView('change_password');
     }
-
+    /**
+     * Generation of analyse page1 (seulement pour admin)
+     */
     public function analyse() {
         $this->modelPost = new Post();
         $category = "P";
@@ -369,7 +375,9 @@ class BlogController {
         $this->manager->post = $this->modelPost->analyse($category);
         $this->manager->getView('analyse');
     }
-
+    /**
+     * Generation of analyse page2 (seulement pour admin)
+     */
     public function analyseP() {
         $this->modelPost = new Post();
         //$this->manager->category = $this->modelPost->analyseP();

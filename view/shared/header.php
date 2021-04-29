@@ -46,8 +46,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="header">
             <div class="logo">
                 <a href="<?=ROOT_URL?>"><img src="content/images/logoUt1.png" style="width:20%;height:20%;float:left;" class="img-responsive" alt="" /></a>
-                <h1>
-                    <br><center>Ticket Space</center>
+                <h1 style="margin-left:150px;">
+                    <br>HELP DESK
                 </h1>
 
             </div>
@@ -63,7 +63,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <nav>
                 <ul>
                     <li><a href="<?=ROOT_URL?>">Accueil</a></li>
-                    <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts" data-hover="BLOG">BLOG</a></li>
+                    <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts" data-hover="BLOG">Forum</a></li>
                     <?php if(empty($_SESSION['active'])): ?>
                         <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=login" data-hover="Connexion">Connexion</a></li>
                     <?php elseif(!empty($_SESSION['active'])) : ?>

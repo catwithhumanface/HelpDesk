@@ -8,7 +8,7 @@
 
             <div class="col-lg-8 col-lg-offset-2">
 
-                <h1>Add a new blog post</h1>
+                <h1>Ajoutez une réponse</h1>
 
                 <?php if (!empty($this->msgError)): ?>
 					<p class="msg"><?=$this->msgError?></p>
@@ -57,8 +57,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="content">Content *</label>
-                                    <textarea id="content" name="content" class="form-control" placeholder="Veuillez entrer votre reponse." rows="4" required="required" data-error="Kindly write your post's content"></textarea>
+                                    <label for="content">Contenu *</label>
+                                    <textarea id="content" name="content" class="form-control" placeholder="Veuillez entrer votre reponse." rows="4" required="required" data-error="Veuillez entrer votre réponse."></textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <p class="text-muted"><strong>*</strong> These fields are required.</p>
+                                <p class="text-muted"><strong>*</strong> Ces champs sont obligatoires.</p>
                             </div>
                         </div>
                     </div>

@@ -5,11 +5,7 @@
 	<div class="container">
 	 <div class="load_more">
 		<div class="row">
-
             <div class="col-lg-8 col-lg-offset-2">
-
-
-
                 <?php if (!empty($this->msgError)): ?>
 					<p class="msg"><?=$this->msgError?></p>
 				<?php endif ?>
@@ -29,54 +25,13 @@
                 <?php if (isset($_SESSION['username']))
                     $username = $_SESSION['username'];
                 ?>
-								<?php if (isset($_SESSION['type_user']))
-                            $type_user = $_SESSION['type_user'];
+                <?php if (isset($_SESSION['type_user']))
+                    $type_user = $_SESSION['type_user'];
                   ?>
 
-
-				<?php ?>
-				<?php if ($type_user =="admin") :?>
-
-
-																			<li><h1>Mes réponses</h1></li>
-
-							<?php
-							elseif ($type_user =="etudiant") :?>
-								<h1>Mes tickets</h1>
-									<?php
-								elseif ($type_user =="professeur") :?>
-									<h1>Mes réponses</h1>
-						<?php endif ?>
-
-					<table class="table">
-					  <thead>
-
-					  </thead>
-					  <tbody>
-					    <tr>
-					      <th scope="row">Nom</th>
-					      <td><?php echo $_SESSION['username']?></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">Statut</th>
-					      <td><?php echo $_SESSION['type_user']?></td>
-					    </tr>
-							<tr>
-					      <th scope="row">Adresse email</th>
-					      <td><?php echo $_SESSION['active']?></td>
-					    </tr>
-					  </tbody>
-					</table>
-
-					<?php if ($type_user =="admin") :?>
-
-					                           
-					                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyse">analyse</a>
-					                            </li>
-					    <?php endif ?>
-
-				<?php  ?>
-
+				<?php if (!$type_user =="etudiant") :?>
+                    <h1>Mes réponses</h1>
+                <?php endif ?>
             </div>
 
         </div>
@@ -97,12 +52,8 @@
 								<div class="col-md-12 praesent">
 									<div class="l_g_r">
 										<div class="dapibus">
-											<h2>&iexcl;&iexcl; No Tickets found !!</h2>
+											<h2>&iexcl;&iexcl; Vous n'avez pas de réponse créé !!</h2>
 											<br/>
-	                                        <?php if(!empty($_SESSION['active'])) : ?>
-											    <h2><button type="button" onclick="window.location='<?=ROOT_URL?>?p=blogController&amp;a=add'" class="bold addFirstPost">Add your first blog post here.</button></h2>
-
-	                                        <?php endif ?>
 	                                    </div>
 									</div>
 								</div>
@@ -112,13 +63,21 @@
 						<?php else :?>
 
 							<?php foreach ($this->mesReponses as $po): ?>
-							<h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;id=<?=$po->id?>"><?=htmlspecialchars($po->title)?></a></h2>
+                    <div class="l_g">
+                        <div class="col-md-12 praesent">
+                            <div class="l_g_r">
+                                <div class="dapibus">
+                                    <p style="color:darkblue; font-size:14pt">
+                                        TITRE : <a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;id=<?=$po->id?>"><?=htmlspecialchars($po->title)?></a>
 							<br/>
-							<p class="adm">Statut : <?=$po->statusT?> </p>
-							<p class="adm">Catégorie : <?=$po->category?> </p>
-							<p class="adm">Ma réponse: <?=$po->content?> </p>
-							<a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;id=<?=$po->id?>" class="link">Voir plus</a>
-
+                                        <span style="font-size:11pt;">Statut : <?=$po->statusT?>  | Catégorie : <?=$po->category?> </span></br>
+							<span style="color:black; font-size:12pt;" >Ma réponse : <?=$po->content?> </span>
+							 </p>
+							<a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$po->id?>" class="link">Voir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 						<?php endforeach ?>
 					<?php endif ?>
 

@@ -15,10 +15,10 @@ $email_address = strip_tags(htmlspecialchars($_POST['email']));
 $message = strip_tags(htmlspecialchars($_POST['message']));
 
 // Create the email and send the message
-$to = 'islam20088@hotmail.com';
+$to = 'joohyun.ann@ut-capitole.fr';
 $email_subject = "Blog | New message from $name";
 $email_body = "New message from your blog.\n\n"."Here are the details :\n\nName: $name\n\nEmail: $email_address\n\nMessage: $message\n\n";
-$headers = "From: noreply@blog.islamelshobokshy.info\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
+$headers = "From: noreply@blog.islamelshobokshy.info\n";
 $headers .= "Reply-To: $email_address";   
 ob_start();
 mail($to,$email_subject,$email_body,$headers);

@@ -63,10 +63,8 @@ if(isset($_SESSION['type_user'])){
                                 <div class="col-md-12 praesent">
                                     <div class="l_g_r">
                                         <div class="dapibus">
-                                            <h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>"><?=htmlspecialchars($post->content)?></a></h2>
-                                            <h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>"><?=htmlspecialchars($post->username)?></a></h2>
-                                            <br/>
-                                            <h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>"><?=htmlspecialchars($post->creation_date)?></a></h2>
+                                            <h2><?=htmlspecialchars($post->content)?></h2>
+                                            <p>Par <?=htmlspecialchars($post->username)?> </br><?=htmlspecialchars($post->creation_date)?></p>
 											</div>
 										</div>
 									</div>
@@ -77,13 +75,6 @@ if(isset($_SESSION['type_user'])){
 				<?php endif ?>
 			</ul>
 	 </div>
-        <ul class ="pagination" style="margin-left:50%;">
-        <?php for ($i=1; $i<= $pageCount; $i++) {?>
-            <li class="page-item <?= ($page == $i) ? "active" : "" ?>">
-                <a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;cp=<?= $i ?>" class="page-link"><?= $i ?></a>
-            </li>
-        <?php } ?>
-        </ul>
 	</div>
 </div>
 <!-- content -->

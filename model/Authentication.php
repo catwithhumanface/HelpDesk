@@ -36,13 +36,6 @@ class Authentication {
         return $query->execute();
     }
 
-
-
-
-
-
-
-
     /**
      * Authentication process
      * @param $username

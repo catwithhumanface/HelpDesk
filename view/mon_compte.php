@@ -67,6 +67,12 @@
 		<div class="container">
 		 <div class="load_more">
 				<ul id="myList">
+                    <?php if ($type_user =="admin"or $type_user =="professeur")   :?>
+                            <?php if ($type_user =="admin") :?>
+                             <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyse" class="link">Analyse</a></li>
+                            <?php endif ?>
+                         <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=mon_compte_mesreponses" class="link">Voir mes Réponses</a></li
+                             <?php endif ?>
 					<!-- If no blog posts are found we ask the user to create his first post -->
 					<?php if (empty($this->post)): ?>
 						<li>
@@ -74,11 +80,10 @@
 								<div class="col-md-12 praesent">
 									<div class="l_g_r">
 										<div class="dapibus">
-											<h2>&iexcl;&iexcl; No Tickets found !!</h2>
+											<h2>&iexcl;&iexcl; Vous n'avez pas de ticket.</h2>
 											<br/>
 	                                        <?php if(!empty($_SESSION['active'])) : ?>
-											    <h2><button type="button" onclick="window.location='<?=ROOT_URL?>?p=blogController&amp;a=add'" class="bold addFirstPost">Add your first blog post here.</button></h2>
-
+											    <h2><button type="button" onclick="window.location='<?=ROOT_URL?>?p=blogController&amp;a=add'" class="bold addFirstPost">Ajoutez votre premier ticket.</button></h2>
 	                                        <?php endif ?>
 	                                    </div>
 									</div>
@@ -99,18 +104,15 @@
 	                                            <br/>
 	                                            <p class="adm">Category : <?=$post->category?> | <?=$post->creation_date?></p>
 	                                            <a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>" class="link">Read More</a>
-	                                            <!-- If user is not logged in -->
-
 	                                            <?php if ($post->id_user == $id_user): ?>
 	                                                <a href="<?=ROOT_URL?>?p=blogController&amp;a=edit&amp;id=<?=$post->id?>" class="link">Edit</a>
 	                                                <form name="delete" action="<?=ROOT_URL?>?p=blogController&amp;a=delete&amp;id=<?=$post->id?>" method="post" class="link">
 	                                                    <button type="submit" name="delete" value="1" class="bold">
 	                                                        Delete
 	                                                    </button>
-	                                                </form>
-																								<?php elseif(empty($_SESSION['active'])) : ?>
-																										<p class="addFirstPost">Please <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">login</a> to edit/delete.</p>
-
+                                                </form>
+                                                <?php elseif(empty($_SESSION['active'])) : ?>
+                                                        <p class="addFirstPost">Please <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">login</a> to edit/delete.</p>
 	                                            <?php endif ?>
 
 												</div>
@@ -119,15 +121,12 @@
 										<div class="clearfix"></div>
 									</div>
 							</li>
-						<?php endif ?>
-					<?php endforeach ?>
-				        <?php elseif ($type_user =="admin"or $type_user =="professeur")   :?>
-                            <?php if ($type_user =="admin") :?>
-                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyse" class="link">Analyse</a></li>
-                            <?php endif ?>
-							    <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=mon_compte_mesreponses&amp;>" class="link">Voir mes Réponses</a></li
-                        <?php endif ?>
-				<?php endif ?>
+							<?php endif ?>
+                            <?php endforeach; ?>
+                       <!--if etudiant fini-->
+                        <?php endif?>
+                    <?php endif?>
+
 				</ul>
 		 </div>
 		</div>

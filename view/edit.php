@@ -8,7 +8,7 @@
 
             <div class="col-lg-8 col-lg-offset-2">
 
-                <h1>Edit</h1>
+                <h1>Modifier mon ticket</h1>
 
                 <?php if (!empty($this->msgError)): ?>
 					<p class="msg"><?=$this->msgError?></p>
@@ -45,9 +45,9 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="title">Title * </label>
-                                    <input id="title" type="text" name="title" class="form-control" value='<?=$this->post->title?>' required="required" data-error="The title is required.">
+                                    <input id="title" type="text" name="title" class="form-control" value='<?=$this->post->title?>' required="required" data-error="Le titre est demandé">
                                     <div class="help-block with-errors"></div>
-									<small> Title needs to be a maximum of 50 characters</small>
+									<small> Titre ne doit pas contenir plus de 50 charactères.</small>
                                 </div>
                             </div>
 						</div>
@@ -55,7 +55,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="category">Category *</label>
+                                    <label for="category">Categorie *</label>
                                     <?php if ($this->post->category =="Administratif") : ?>
                                         <select name="category" id="category">
                                             <option value="Administratif" selected>Administratif</option>
@@ -100,7 +100,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="content">Content *</label>
+                                    <label for="content">Contenu *</label>
                                     <textarea id="content" name="content" class="form-control" rows="4" required="required" data-error="Kindly write your post's content"><?=$this->post->content?></textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
@@ -111,7 +111,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <p class="text-muted"><strong>*</strong> These fields are required.</p>
+                                <p class="text-muted"><strong>*</strong> Les champs sont obligatoires.</p>
                             </div>
                         </div>
                     </div>

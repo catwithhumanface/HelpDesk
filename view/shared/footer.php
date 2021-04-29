@@ -1,20 +1,20 @@
 <!-- footer -->
 <div class="footer">
 
-    <div class="row">
+    <div class="row" style="margin-bottom:30px";>
 
         <div class="col-md-6">
             <h1>Abouts US</h1>
             <p>
-                Dalac Program est une jeune start-up Toulousaine créée en 2020.
-                Elle s’est développée après avoir constaté le besoin des étudiants
+                Dalac Program est une jeune start-up Toulousaine créée en 2020.<br/>
+                Elle s’est développée après avoir constaté le besoin des étudiants<br/>
                 d’apprendre à utiliser les outils du web. Depuis,
-                nous travaillons avec les universités dans le but de leur fournir des outils web adaptés.
+                nous travaillons <br/>avec les universités dans le but de leur fournir des outils web adaptés.<br/>
             </p>
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" style="text-align:center;">
 
             <h1>Our Team</h1>
 
@@ -49,21 +49,14 @@
 
                 <br>
 
-                LUI Tong Développeuse web
+                LIU Tong Développeuse web
 
                 <a href="https://www.linkedin.com/in/islam-elshobokshy/" target='_blank'>
                     <i class="fa fa-linkedin-square fa-2x"></i>
                 </a>
-
                 <br>
-
             </p>
-
-
-
         </div>
-
-
     </div>
 
 
@@ -77,22 +70,9 @@
                 <h6>Copyrights © 2021</h6>
                 <p>All rights reserved</p>
             </div>
-            <div class="clearfix"> </div>
-
         </div>
 
-        <div class="col-md-3">
-            <div class="top1">
-                <i class="men"></i>
-            </div>
-            <div class="top2">
-                <h6>Réalisé par: </h6>
-                <p><a href="http://w3layouts.com/" target='_blank'><em>Dalac Program</em></a></p>
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
+        <div class="col-md-3" style="margin-left:60px;">
             <div class="top1">
                 <i class="lik"></i>
             </div>
@@ -100,18 +80,16 @@
                 <h6>université ut1 Captiole </h6>
                 <p><a href="https://www.ut-capitole.fr/" target='_blank'> Ut1 capitole </a></p>
             </div>
-
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3" style="margin-left:60px;">
             <div class="top1">
                 <i class="men"></i>
             </div>
             <div class="top2">
                 <h6>Réalisé par: </h6>
-                <p><a href="http://w3layouts.com/" target='_blank'><em>Dalac Program</em></a></p>
+                <p><a><em>Dalac Program</em></a></p>
             </div>
-
         </div>
 
     </div>

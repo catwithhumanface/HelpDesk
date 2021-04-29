@@ -447,7 +447,7 @@ a.link:hover{
 }
 .footer {
     background: #9b0010;
-    padding: 4em 0;
+    padding: 4em 0 2em 4em;
     text-align: center;
 }
 
@@ -456,17 +456,17 @@ a.link:hover{
     float: left;
     width: 14%;
     margin-right: 3%;
+    margin-left:130px;
 }
 .top2 {
     float: right;
-    width: 82%;
+    width: 180px;
 }
 i.ham {
     width: 32px;
     height: 32px;
     background: url(../images/img-sprite.png)no-repeat -4px -2px;
-    display: inline-block;
-    vertical-align: middle;
+    float:right;
 }
 i.men{
     width:32px;
@@ -493,13 +493,13 @@ i.lik {
     color: #556a7f;
     font-size: 1em;
     font-weight: 700;
-    text-align: left;
+    text-align: center;
 }
 .footer p {
     color: #dc8e7f;
     font-size: 1em;
     font-weight: 300;
-    text-align: left;
+    text-align: center;
 }
 .footer a{
     color: #dc8e7f;
@@ -1374,6 +1374,7 @@ ul.links li.last {
         padding: 1em 0;
         border-bottom: 1px solid #6f879a;
     }
+
     .praesent {
         text-align: center;
     }

@@ -38,7 +38,6 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="password">Mot de passe *</label><br/>
-                                                <small><a href="<?=ROOT_URL?>?p=blogController&amp;a=changePwd">Mot de passe oublié?</a></small>
                                                 <input id="password" type="password" name="password" class="form-control" placeholder="Entrer votre mot de passe." required="required" data-error="Author is required.">
                                                 <div class="help-block with-errors"></div>
                                             </div>
