@@ -44,6 +44,7 @@ if(isset($_SESSION['countReponse'])){
             <ul class="links">
                 <li><i class="date"> </i><span class="icon_text"><?=$this->post->creation_date?></span></li>
                 <li><a href="#"><i class="admin"> </i><span class="icon_text"><?=$post_username?></span></a></li>
+                 <!-- les étudiants ne peuvent pas répondre -->
                 <?php if ($this->post->statusT=="en cours" && $type_user!="etudiant"):?>
                     <li><a href = "<?=ROOT_URL?>?p=blogController&amp;a=repondre&amp;id=<?=$this->post->id?>" class="link"> Repondre</a ></li>
                 <?php endif?>

@@ -111,9 +111,9 @@ class Post {
         $rowsToReturn = $query->fetchAll(\PDO::FETCH_OBJ);
         return $rowsToReturn;
     }
-		public function getMyReponse($id) {
-        $query = $this->db_connection->prepare('SELECT * FROM reponse,users WHERE id =:postId and reponse.id_user=users.id_user and  reponse.id_user=:id_user  ');
-				$query->bindParam(':postId', $id, \PDO::PARAM_INT);
+		public function getMyReponse() {
+        $query = $this->db_connection->prepare('SELECT * FROM ticket,reponse WHERE   reponse.id_user=:id_user and reponse.id=ticket.id  ');
+			//	$query->bindParam(':postId', $id, \PDO::PARAM_INT);
 					$query->bindParam(':id_user', $_SESSION['id_user'], \PDO::PARAM_INT);
 
         $query->execute();

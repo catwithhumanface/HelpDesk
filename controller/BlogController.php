@@ -109,9 +109,19 @@ class BlogController {
         $tickets_per_page = 3;
         $offset = ($currentPage -1) * $tickets_per_page;
         $this->manager->post = $this->modelPost->getAll();
+				//$this->manager->MesReponses = $this->modelPost->getMyReponse($this->id);
 
         $this->manager->getView('mon_compte');
     }
+		public function mon_compte_mesreponses() {
+				$this->modelPost = new Post();
+				//$this->manager->post = $this->modelPost->getById($this->id);
+
+			//	$this->manager->post = $this->modelPost->getAll();
+				$this->manager->MesReponses = $this->modelPost->getMyReponse();
+
+				$this->manager->getView('mon_compte_mesreponses');
+		}
     /**
      * Generation of a specific blog post.
      */
@@ -260,8 +270,8 @@ class BlogController {
     }
 		public function mesReponses() {
 				$this->modelPost = new Post();
-				$this->manager->post = $this->modelPost->getMyReponse($this->id);
-				$this->manager->getView('reponses');
+				$this->manager->post = $this->modelPost->getMyReponse();
+				$this->manager->getView('mesReponses');
 		}
 
 

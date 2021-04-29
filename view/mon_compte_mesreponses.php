@@ -185,9 +185,18 @@
 							</li>
 						<?php endif ?>
 					<?php endforeach ?>
-				<?php elseif ($type_user =="admin")  :?>
-							<a href="<?=ROOT_URL?>?p=blogController&amp;a=mon_compte_mesreponses&amp;>" class="link">Voir mes Réponses</a>
+					<?php echo $type_user ;?>
+						<?php elseif ($type_user =="admin") :?>
+							<p>
+								blabla
+							</p>
+							<?php foreach ($this->MesReponses as $po): ?>
+							<h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=mon_compte_mesreponses&amp;id=<?=$po->id?>"><?=htmlspecialchars($po->title)?></a></h2>
+							<br/>
+							<p class="adm">Category : <?=$po->category?> | <?=$po->creation_date?></p>
+							<a href="<?=ROOT_URL?>?p=blogController&amp;a=mon_compte_mesreponses&amp;id=<?=$po->id?>" class="link">Read More</a>
 
+						<?php endforeach ?>
 					<?php endif ?>
 				<?php endif ?>
 				</ul>
