@@ -106,7 +106,7 @@ class Post {
      */
     public function getReponse($id) {
         //Normally we wouldn't be using LIMIT here, as the ID is unique anyways. But it's better to have several check ups to have exactly what we need.
-        $query = $this->db_connection->prepare('SELECT * FROM reponse WHERE id = :postId LIMIT 1');
+        $query = $this->db_connection->prepare('SELECT * FROM reponse WHERE id = :postId ');
         $query->bindParam(':postId', $id, \PDO::PARAM_INT);
         $query->execute();
         $rowsToReturn = $query->fetchAll(\PDO::FETCH_OBJ);

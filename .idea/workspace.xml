@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="955791b5-2f26-4de7-9d58-008178f1b034" name="Default Changelist" comment="cloture de ticket, analyse debugging fait">
-      <change afterPath="$PROJECT_DIR$/content/css/style5.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/mon_compte.php" afterDir="false" />
+    <list default="true" id="955791b5-2f26-4de7-9d58-008178f1b034" name="Default Changelist" comment="fini partie joohyun (reste debugging, voir les reponses error)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blogmvc_oop.sql" beforeDir="false" afterPath="$PROJECT_DIR$/blogmvc_oop.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/BlogController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Authentication.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/Authentication.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/post.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/reponses.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/reponses.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/shared/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/shared/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/shared/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/shared/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/analyse.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/analyse.php" afterDir="false" />
     </list>
     <list id="653eea27-46da-4097-a488-75e1dfd165b5" name="Added a change password option in login page" comment="Added a change password option in login page&#10;&#10;(cherry picked from commit 366a35e837f5e7a2bfdf1b07e10e0d18ea4a607f)">
       <changelist_data name="elshobokshy" email="islam20088@hotmail.com" date="1488470798000" />
@@ -58,6 +51,7 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -86,7 +80,7 @@
       <updated>1619264318568</updated>
       <workItem from="1619264323549" duration="10926000" />
       <workItem from="1619364791549" duration="5627000" />
-      <workItem from="1619380482935" duration="97528000" />
+      <workItem from="1619380482935" duration="105140000" />
     </task>
     <task id="LOCAL-00001" summary="db pb solved">
       <created>1619274136571</created>
@@ -165,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619622038411</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fini partie joohyun (reste debugging, voir les reponses error)">
+      <created>1619627608219</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1619627608219</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,6 +259,22 @@
     <MESSAGE value="Analyse tickets intégrée,&#10;Création ticket,&#10;Inscription,&#10;Login" />
     <MESSAGE value="Delete tickt, voir les reponses completed" />
     <MESSAGE value="cloture de ticket, analyse debugging fait" />
-    <option name="LAST_COMMIT_MESSAGE" value="cloture de ticket, analyse debugging fait" />
+    <MESSAGE value="fini partie joohyun (reste debugging, voir les reponses error)" />
+    <option name="LAST_COMMIT_MESSAGE" value="fini partie joohyun (reste debugging, voir les reponses error)" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/model/Post.php</url>
+          <line>29</line>
+          <properties>
+            <option name="className" value="\BlogPHP\Model\Post" />
+            <option name="methodName" value="get" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
