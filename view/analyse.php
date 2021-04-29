@@ -60,7 +60,7 @@ endif;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 
 
-    <script>``
+    <script>
         <?php $bar_graph = $this->post;?>
         var ctx = document.getElementById('graph'); // node
         var ctx = document.getElementById('graph').getContext('2d'); // 2d context

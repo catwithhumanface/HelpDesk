@@ -89,8 +89,26 @@ class BlogController {
      * Generation of the mon compte page.
      */
     public function mon_compte() {
-        //$this->modelAuthentication = getAuthentication($_SESSION['active'], $_POST['password']);
-        //$_SESSION['type_user'] = $_POST['statut'];
+			  $this->modelPost = new Post();
+				//$this->manager->post = $this->modelPost->getById($this->id);
+        if(isset($_GET["cp1"]) && !empty($_GET["cp1"])) {
+            $currentPage = (int)$_GET["cp1"];
+        }else {
+            $currentPage = 1;
+        }
+        $_SESSION['currentPage'] = $currentPage;
+
+        if(isset($_GET["category"]) && !empty($_GET["category"])) {
+            $category = $_GET["category"];
+            $_SESSION['category'] = $category;
+        }else {
+            $category = "all";
+        }
+        $_SESSION['category'] = $category;
+
+        $tickets_per_page = 3;
+        $offset = ($currentPage -1) * $tickets_per_page;
+        $this->manager->post = $this->modelPost->getAll();
 
         $this->manager->getView('mon_compte');
     }
@@ -240,6 +258,11 @@ class BlogController {
         $this->manager->post = $this->modelPost->getReponse($this->id);
         $this->manager->getView('reponses');
     }
+		public function mesReponses() {
+				$this->modelPost = new Post();
+				$this->manager->post = $this->modelPost->getMyReponse($this->id);
+				$this->manager->getView('reponses');
+		}
 
 
 
@@ -296,7 +319,7 @@ class BlogController {
             exit();
         } else if (!empty($_SESSION)) {
             $_SESSION = array();
-            session_unset($_SESSION);
+            //session_unset($_SESSION);
             session_destroy();
             setcookie(session_name(),'',0,'/');
         }

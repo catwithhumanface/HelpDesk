@@ -64,6 +64,7 @@ if(isset($_SESSION['type_user'])){
                                     <div class="l_g_r">
                                         <div class="dapibus">
                                             <h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>"><?=htmlspecialchars($post->content)?></a></h2>
+                                            <h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>"><?=htmlspecialchars($post->username)?></a></h2>
                                             <br/>
                                             <h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>"><?=htmlspecialchars($post->creation_date)?></a></h2>
 											</div>
@@ -85,6 +86,6 @@ if(isset($_SESSION['type_user'])){
         </ul>
 	</div>
 </div>
-<!-- content -->	
+<!-- content -->
 
 <?php require_once 'shared/footer.php' ?>

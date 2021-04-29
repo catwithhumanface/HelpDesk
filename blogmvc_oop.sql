@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS ticket (
     category varchar(255) DEFAULT "Pédagogique",
     creation_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     PRIMARY KEY (id),
-    statusT varchar(255) DEFAULT "en cours",
+    statut varchar(255) DEFAULT "en cours",
     KEY fk_id_user(id_user)
     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -79,5 +79,3 @@ CREATE TABLE IF NOT EXISTS reponse (
     PRIMARY KEY (id_reponse),
     KEY fk_id_tiket(id)
     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
-

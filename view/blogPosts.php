@@ -53,8 +53,8 @@ if(isset($_SESSION['type_user'])){
         <li class="page-item" <?= ($category == "Pédagogique") ? "active" : "" ?>>
             <a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;category=Pédagogique" class="page-link">Pédagogique</a>
         </li>
-        <li class="page-item" <?= ($category == "Etc") ? "active" : "" ?>>
-            <a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;category=Etc" class="page-link">Etc</a>
+        <li class="page-item" <?= ($category == "Autres") ? "active" : "" ?>>
+            <a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;category=Etc" class="page-link">Autres</a>
         </li>
     </ul>
 	<div class="container">
@@ -124,6 +124,6 @@ if(isset($_SESSION['type_user'])){
         </ul>
 	</div>
 </div>
-<!-- content -->	
+<!-- content -->
 
 <?php require_once 'shared/footer.php' ?>

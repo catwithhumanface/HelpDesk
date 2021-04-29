@@ -14,7 +14,7 @@ class Database extends \PDO{
     public function __construct() {
 
 		//Change these values to your own database.
-		$_MYSQL_DB = 'blogMVC_OOP';
+		$_MYSQL_DB = 'helpdesk';
 		$_MYSQL_HOST = 'localhost';
 		$_MYSQL_USER = 'root';
 		$_MYSQL_PW = '';

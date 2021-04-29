@@ -9,7 +9,7 @@ use BlogPHP\App\Model;
  * @package BlogPHP\Model
  */
 class Post {
-	
+
 	protected $db_connection;
 
     /**
@@ -28,7 +28,7 @@ class Post {
      * @return array
      */
     public function get($startLimit, $endLimit, $category) {
-		//Preparing the query 
+		//Preparing the query
         $query = $this->db_connection->prepare('SELECT * FROM ticket ORDER BY creation_date DESC LIMIT :startLimitRange, :endLimitRange');
 		//Both of the ranges given through the bindParam() method, using the PDO::PARAM_INT
         $query->bindParam(':startLimitRange', $startLimit, \PDO::PARAM_INT);
@@ -105,9 +105,17 @@ class Post {
      * @return mixed
      */
     public function getReponse($id) {
-        //Normally we wouldn't be using LIMIT here, as the ID is unique anyways. But it's better to have several check ups to have exactly what we need.
-        $query = $this->db_connection->prepare('SELECT * FROM reponse WHERE id = :postId LIMIT 1');
+        $query = $this->db_connection->prepare('SELECT * FROM reponse, users WHERE id = :postId and reponse.id_user=users.id_user ');
         $query->bindParam(':postId', $id, \PDO::PARAM_INT);
+        $query->execute();
+        $rowsToReturn = $query->fetchAll(\PDO::FETCH_OBJ);
+        return $rowsToReturn;
+    }
+		public function getMyReponse($id) {
+        $query = $this->db_connection->prepare('SELECT * FROM reponse,users WHERE id =:postId and reponse.id_user=users.id_user and  reponse.id_user=:id_user  ');
+				$query->bindParam(':postId', $id, \PDO::PARAM_INT);
+					$query->bindParam(':id_user', $_SESSION['id_user'], \PDO::PARAM_INT);
+
         $query->execute();
         $rowsToReturn = $query->fetchAll(\PDO::FETCH_OBJ);
         return $rowsToReturn;
@@ -193,9 +201,9 @@ class Post {
         }else if($category=="A%"){
             $categoryFullname="Administratif";
         }else{
-            $categoryFullname="Etc";
+            $categoryFullname="Autres";
         }
-            $query = $this->db_connection->prepare('SELECT date_format(creation_date, "%Y-%m-%d") as date 
+            $query = $this->db_connection->prepare('SELECT date_format(creation_date, "%Y-%m-%d") as date
                                                         FROM ticket where category like :category group by creation_date');
             $query->bindParam(':category', $category, \PDO::PARAM_STR);
             $query->execute();
@@ -222,9 +230,9 @@ class Post {
             }
 
 
-        $bar_graph = '   
+        $bar_graph = '
                       "labels": [' . $month . '],
-                      "datasets": 
+                      "datasets":
                       [{
                         "label": " Le nombre de tickets pour category ' . $categoryFullname. '  ",
                         "backgroundColor": ["#FFFFCC",
