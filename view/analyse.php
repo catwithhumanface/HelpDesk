@@ -18,16 +18,16 @@ endif;
 
     <div class="container">
         <div class="row" style="padding-bottom:30px;">
-            <div class="col-md-3 copy"style="width:500px; background-color:skyblue;  margin-right:200px;">
+            <div class="col-md-3 copy"style="margin-left:30px; width:430px; background-color:skyblue;  margin-right:200px;">
                 <h3><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyse">Nombre ticket par categories et dates</a></h3>
             </div>
-            <div class="col-md-3 copy"style="width:430px;  background-color:skyblue;"  >
-                <h3><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyseP">Analyse des pourcentages des catégories</a></h3>
+            <div class="col-md-3 copy"style="margiin-left:30px; width:430px;  background-color:skyblue;"  >
+                <h3><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyseP">Analyse des tickets par catégorie</a></h3>
             </div>
         </div>
         <div class="row">
             <div class="col text-center" style="margin-top: 25px; margin-bottom: 25px;">
-
+                <h3 style="margin-left:380px; margin-bottom:30px;">Nombre des tickets par categorie et dates</h3>
                 <select class="custom-select"  style="height:30px;"id="selDepartment" name="selDepartment" onchange="getCategory();">
                     <?php if ($categoryA=='P'):?>
                     <option value="P" selected>Pédagogique</option>
@@ -71,7 +71,6 @@ endif;
         $(document).ready(function(){
             $.ajax({
                 url: "../?p=blogController&a=analyse",
-
                 type: "POST",
                 data: {
                     category: "Pédagogique"

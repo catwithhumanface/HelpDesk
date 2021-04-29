@@ -18,14 +18,14 @@ endif;
 
         <div class="container">
             <div class="row" style="padding-bottom:30px;">
-                <div class="col-md-3 copy"style="width:500px; background-color:skyblue;  margin-right:200px;">
+                <div class="col-md-3 copy"style="margin-left:30px; width:430px; background-color:skyblue;  margin-right:200px;">
                     <h3><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyse">Nombre ticket par categories et dates</a></h3>
                 </div>
-                <div class="col-md-3 copy"style="width:430px;  background-color:skyblue;"  >
-                    <h3><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyseP">Analyse des pourcentages des catégories</a></h3>
+                <div class="col-md-3 copy"style="margiin-left:30px; width:430px;  background-color:skyblue;"  >
+                    <h3><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyseP">Analyse des tickets par catégorie</a></h3>
                 </div>
             </div>
-
+            <h3 style="margin-left:380px; margin-bottom:30px;">Analyse des tickets par catégorie</h3>
 
             <div id="piechart" style="padding-left : 100px; width: 900px; height: 500px;"></div>
         </div>
@@ -53,9 +53,7 @@ endif;
                 for(i = 0; i < my_2d.length; i++){
                     data.addRow([my_2d[i].category, parseInt(my_2d[i].nombre)]);
                 }
-
-
-                var options = {title:'Analyse des pourcentages des tickets par Category',
+                var options = {title:'Analyse des tickets en pourcentage par Catégorie',
                     width:900,
                     height:500};
 

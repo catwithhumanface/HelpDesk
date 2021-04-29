@@ -5,11 +5,7 @@
 	<div class="container">
 	 <div class="load_more">
 		<div class="row">
-
             <div class="col-lg-8 col-lg-offset-2">
-
-
-
                 <?php if (!empty($this->msgError)): ?>
 					<p class="msg"><?=$this->msgError?></p>
 				<?php endif ?>
@@ -29,37 +25,30 @@
                 <?php if (isset($_SESSION['username']))
                     $username = $_SESSION['username'];
                 ?>
-								<?php if (isset($_SESSION['type_user']))
-                            $type_user = $_SESSION['type_user'];
+
+                <?php if (isset($_SESSION['type_user']))
+                    $type_user = $_SESSION['type_user'];
                   ?>
 
 
-				<?php ?>
-				<?php if ($type_user =="admin") :?>
-
-
-																			<h1>Mes réponses</h1></li>
-
-							<?php
-							elseif ($type_user =="etudiant") :?>
-								<h1>Mes tickets</h1>
-									<?php
-								elseif ($type_user =="professeur") :?>
-									<h1>Mes réponses</h1>
-						<?php endif ?>
+					<h1>Mon compte</h1>
 
 					<table class="table">
-					  <thead>
-
-					  </thead>
 					  <tbody>
 					    <tr>
 					      <th scope="row">Nom</th>
 					      <td><?php echo $_SESSION['username']?></td>
 					    </tr>
+
 					    <tr>
 					      <th scope="row">Statut</th>
-					      <td><?php echo $_SESSION['type_user']?></td>
+					      <td>
+                              <?php if ($type_user =="admin") {
+                                  echo "Personnel administratif";}
+                              else{
+                                  echo $type_user ;
+                              }?>
+                          </td>
 					    </tr>
 							<tr>
 					      <th scope="row">Adresse email</th>
@@ -68,66 +57,13 @@
 					  </tbody>
 					</table>
 
-					<?php if ($type_user =="admin") :?>
-
-
-					                                <button href="<?=ROOT_URL?>?p=blogController&amp;a=analyse">analyse</a>
-					                            </li>
-					    <?php endif ?>
-
-				<?php  ?>
-
             </div>
-
         </div>
 	 </div>
 	</div>
-	<?php
-	$pageCount =1;
-	if(isset($_SESSION['currentPage'])){
-	    $page = $_SESSION['currentPage'];
-	}else{
-	    $page = 1;
-	}
-	if (isset($_SESSION['totalCount']) || isset($_SESSION['tickets_per_page'])) :
-	    if ($_SESSION['totalCount'] === 0){
-	        // no posts
-	    }else{
-	        $totalCount = $_SESSION['totalCount'];
-	        $tickets_per_page =$_SESSION['tickets_per_page'];
-	        $pageCount = (int)ceil($totalCount/$tickets_per_page);
-	        if($page > $pageCount) {
-	            // error to user, set page to 1
-	            $page = 1;
-	        }
-	    }
-	endif;
-	if (isset($_SESSION['category'])) :
-	    $category = $_SESSION['category'];
-	endif;
-	if (isset($_SESSION['active'])) :
-	    $category = $_SESSION['category'];
-	endif;
-
-	 if(!empty($_SESSION['active'])) :
-	    $email = $_SESSION['active'];
-	    $id_user =  $_SESSION['id_user'];
-	    $username = $_SESSION['username'];
-	    endif;
-
-	if(isset($_SESSION['type_user'])){
-	    $type_user = $_SESSION['type_user'];
-	}else{
-	    $type_user = "etudiant";
-	}
-
-
-
-	?>
 
 	<!-- content -->
 	<div class="content">
-
 		<div class="container">
 		 <div class="load_more">
 				<ul id="myList">
@@ -185,18 +121,18 @@
 							</li>
 						<?php endif ?>
 					<?php endforeach ?>
-				<?php elseif ($type_user =="admin"or $type_user =="professeur")   :?>
-							<a href="<?=ROOT_URL?>?p=blogController&amp;a=mon_compte_mesreponses&amp;>" class="link">Voir mes Réponses</a>
-
-					<?php endif ?>
+				        <?php elseif ($type_user =="admin"or $type_user =="professeur")   :?>
+                            <?php if ($type_user =="admin") :?>
+                                <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=analyse" class="link">Analyse</a></li>
+                            <?php endif ?>
+							    <li><a href="<?=ROOT_URL?>?p=blogController&amp;a=mon_compte_mesreponses&amp;>" class="link">Voir mes Réponses</a></li
+                        <?php endif ?>
 				<?php endif ?>
 				</ul>
 		 </div>
-
 		</div>
 	</div>
 	<!-- content -->
 </div>
 <!-- content -->
-
 <?php require_once 'shared/footer.php' ?>

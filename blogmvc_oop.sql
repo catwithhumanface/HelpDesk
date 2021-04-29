@@ -48,7 +48,6 @@ INSERT INTO users (username, password) VALUES
 CREATE TABLE IF NOT EXISTS users (
     id_user int(10) NOT NULL AUTO_INCREMENT,
     email varchar(255) NOT NULL,
-
     username varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
     promotion varchar(255) NULL,

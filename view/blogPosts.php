@@ -44,16 +44,16 @@ if(isset($_SESSION['type_user'])){
 <!-- content -->
 <div class="content">
     <ul class ="pagination" style="margin-left:400px;">
-        <li class="page-item" <?= ($category == "all") ? "active" : "" ?>>
+        <li class="page-item <?= ($category == "all") ?  "active" : "" ?> ">
             <a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;category=all" class="page-link">All</a>
             </li>
-        <li class="page-item" <?= ($category == "Administratif") ? "active" : "" ?>>
+        <li class="page-item <?= ($category == "Administratif") ?  "active" : "" ?> ">
             <a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;category=Administratif" class="page-link">Administratif</a>
         </li>
-        <li class="page-item" <?= ($category == "Pédagogique") ? "active" : "" ?>>
+        <li class="page-item <?= ($category == "Pédagogique") ? "active" : "" ?> ">
             <a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;category=Pédagogique" class="page-link">Pédagogique</a>
         </li>
-        <li class="page-item" <?= ($category == "Autres") ? "active" : "" ?>>
+        <li class="page-item <?= ($category == "Etc") ? "active" : "" ?>">
             <a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;category=Etc" class="page-link">Autres</a>
         </li>
     </ul>
@@ -70,9 +70,9 @@ if(isset($_SESSION['type_user'])){
 										<h2>&iexcl;&iexcl; Aucun ticket trouvé !!</h2>
 										<br/>
                                         <?php if(!empty($_SESSION['active'])) : ?>
-										    <h2><button type="button" onclick="window.location='<?=ROOT_URL?>?p=blogController&amp;a=add'" class="bold addFirstPost">Add your first blog post here.</button></h2>
+										    <h2><button type="button" onclick="window.location='<?=ROOT_URL?>?p=blogController&amp;a=add'" class="bold addFirstPost">Créer un nouveau ticket</button></h2>
                                         <?php elseif(empty($_SESSION['active'])) : ?>
-                                            <h2 class="addFirstPost">Please <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">login</a> to add a post.</h2>
+                                            <h2 class="addFirstPost">Veuillez <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">se connecter</a> pour ajouter un ticket</h2>
                                         <?php endif ?>
                                     </div>
 								</div>
@@ -91,7 +91,7 @@ if(isset($_SESSION['type_user'])){
                                             <h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>"><?=htmlspecialchars($post->title)?></a></h2>
                                             <br/>
                                             <p class="adm">Category : <?=$post->category?> | <?=$post->creation_date?></p>
-                                            <a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>" class="link">Read More</a>
+                                            <a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>" class="link">Regarder plus</a>
                                             <!-- If user is not logged in -->
                                             <?php if(!empty($_SESSION['active'])) : ?>
                                             <?php if ($post->id_user == $id_user): ?>
@@ -103,7 +103,7 @@ if(isset($_SESSION['type_user'])){
                                                 </form>
                                             <?php endif ?>
                                             <?php elseif(empty($_SESSION['active'])) : ?>
-                                                <p class="addFirstPost">Please <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">login</a> to edit/delete.</p>
+                                                <p class="addFirstPost">Veuillez <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">se connecter</a> pour modifier ou supprimer votre ticket</p>
                                             <?php endif ?>
 											</div>
 										</div>
