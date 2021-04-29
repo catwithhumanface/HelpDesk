@@ -37,7 +37,7 @@
 				<?php ?>
 				<?php if ($type_user =="admin") :?>
 
-																		<li style="margin-left : 100px;">
+
 																			<h1>Mes réponses</h1></li>
 
 							<?php
@@ -70,7 +70,7 @@
 
 					<?php if ($type_user =="admin") :?>
 
-					                            <li style="margin-left : 100px;">
+					                           
 					                                <button href="<?=ROOT_URL?>?p=blogController&amp;a=analyse">analyse</a>
 					                            </li>
 					    <?php endif ?>
@@ -82,48 +82,7 @@
         </div>
 	 </div>
 	</div>
-	<?php
-	$pageCount =1;
-	if(isset($_SESSION['currentPage'])){
-	    $page = $_SESSION['currentPage'];
-	}else{
-	    $page = 1;
-	}
-	if (isset($_SESSION['totalCount']) || isset($_SESSION['tickets_per_page'])) :
-	    if ($_SESSION['totalCount'] === 0){
-	        // no posts
-	    }else{
-	        $totalCount = $_SESSION['totalCount'];
-	        $tickets_per_page =$_SESSION['tickets_per_page'];
-	        $pageCount = (int)ceil($totalCount/$tickets_per_page);
-	        if($page > $pageCount) {
-	            // error to user, set page to 1
-	            $page = 1;
-	        }
-	    }
-	endif;
-	if (isset($_SESSION['category'])) :
-	    $category = $_SESSION['category'];
-	endif;
-	if (isset($_SESSION['active'])) :
-	    $category = $_SESSION['category'];
-	endif;
 
-	 if(!empty($_SESSION['active'])) :
-	    $email = $_SESSION['active'];
-	    $id_user =  $_SESSION['id_user'];
-	    $username = $_SESSION['username'];
-	    endif;
-
-	if(isset($_SESSION['type_user'])){
-	    $type_user = $_SESSION['type_user'];
-	}else{
-	    $type_user = "etudiant";
-	}
-
-
-
-	?>
 
 	<!-- content -->
 	<div class="content">
@@ -132,7 +91,7 @@
 		 <div class="load_more">
 				<ul id="myList">
 					<!-- If no blog posts are found we ask the user to create his first post -->
-					<?php if (empty($this->post)): ?>
+					<?php if (empty($this->mesReponses)): ?>
 						<li>
 							<div class="l_g">
 								<div class="col-md-12 praesent">
@@ -150,55 +109,19 @@
 								<div class="clearfix"></div>
 							</div>
 						</li>
-					<?php else: ?>
-						<?php if ($type_user =="etudiant") :?>
-						<?php foreach ($this->post as $post): ?>
-							 <?php if ($post->id_user == $id_user): ?>
-							<li>
-	                            <div class="l_g">
-	                                <div class="col-md-12 praesent">
-	                                    <div class="l_g_r">
-	                                        <div class="dapibus">
-	                                            <h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>"><?=htmlspecialchars($post->title)?></a></h2>
-	                                            <br/>
-	                                            <p class="adm">Category : <?=$post->category?> | <?=$post->creation_date?></p>
-	                                            <a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>" class="link">Read More</a>
-	                                            <!-- If user is not logged in -->
+						<?php else :?>
 
-	                                            <?php if ($post->id_user == $id_user): ?>
-	                                                <a href="<?=ROOT_URL?>?p=blogController&amp;a=edit&amp;id=<?=$post->id?>" class="link">Edit</a>
-	                                                <form name="delete" action="<?=ROOT_URL?>?p=blogController&amp;a=delete&amp;id=<?=$post->id?>" method="post" class="link">
-	                                                    <button type="submit" name="delete" value="1" class="bold">
-	                                                        Delete
-	                                                    </button>
-	                                                </form>
-																								<?php elseif(empty($_SESSION['active'])) : ?>
-																										<p class="addFirstPost">Please <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">login</a> to edit/delete.</p>
-
-	                                            <?php endif ?>
-
-												</div>
-											</div>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-							</li>
-						<?php endif ?>
-					<?php endforeach ?>
-					<?php echo $type_user ;?>
-						<?php elseif ($type_user =="admin") :?>
-							<p>
-								blabla
-							</p>
-							<?php foreach ($this->MesReponses as $po): ?>
-							<h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=mon_compte_mesreponses&amp;id=<?=$po->id?>"><?=htmlspecialchars($po->title)?></a></h2>
+							<?php foreach ($this->mesReponses as $po): ?>
+							<h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;id=<?=$po->id?>"><?=htmlspecialchars($po->title)?></a></h2>
 							<br/>
-							<p class="adm">Category : <?=$po->category?> | <?=$po->creation_date?></p>
-							<a href="<?=ROOT_URL?>?p=blogController&amp;a=mon_compte_mesreponses&amp;id=<?=$po->id?>" class="link">Read More</a>
+							<p class="adm">Statut : <?=$po->statusT?> </p>
+							<p class="adm">Catégorie : <?=$po->category?> </p>
+							<p class="adm">Ma réponse: <?=$po->content?> </p>
+							<a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;id=<?=$po->id?>" class="link">Voir plus</a>
 
 						<?php endforeach ?>
 					<?php endif ?>
-				<?php endif ?>
+
 				</ul>
 		 </div>
 

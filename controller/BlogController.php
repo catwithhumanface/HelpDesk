@@ -118,7 +118,7 @@ class BlogController {
 				//$this->manager->post = $this->modelPost->getById($this->id);
 
 			//	$this->manager->post = $this->modelPost->getAll();
-				$this->manager->MesReponses = $this->modelPost->getMyReponse();
+				$this->manager->mesReponses = $this->modelPost->getMyReponse();
 
 				$this->manager->getView('mon_compte_mesreponses');
 		}

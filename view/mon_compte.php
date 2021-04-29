@@ -37,7 +37,7 @@
 				<?php ?>
 				<?php if ($type_user =="admin") :?>
 
-																		<li style="margin-left : 100px;">
+
 																			<h1>Mes réponses</h1></li>
 
 							<?php
@@ -70,7 +70,7 @@
 
 					<?php if ($type_user =="admin") :?>
 
-					                            <li style="margin-left : 100px;">
+
 					                                <button href="<?=ROOT_URL?>?p=blogController&amp;a=analyse">analyse</a>
 					                            </li>
 					    <?php endif ?>
@@ -185,7 +185,7 @@
 							</li>
 						<?php endif ?>
 					<?php endforeach ?>
-				<?php elseif ($type_user =="admin")  :?>
+				<?php elseif ($type_user =="admin"or $type_user =="professeur")   :?>
 							<a href="<?=ROOT_URL?>?p=blogController&amp;a=mon_compte_mesreponses&amp;>" class="link">Voir mes Réponses</a>
 
 					<?php endif ?>
