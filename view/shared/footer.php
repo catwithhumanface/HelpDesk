@@ -4,7 +4,7 @@
     <div class="row" style="margin-bottom:30px";>
 
         <div class="col-md-6">
-            <h1>Abouts US</h1>
+            <h1>A propos</h1>
             <p>
                 Dalac Program est une jeune start-up Toulousaine créée en 2020.<br/>
                 Elle s’est développée après avoir constaté le besoin des étudiants<br/>
@@ -16,18 +16,18 @@
 
         <div class="col-md-6" style="text-align:center;">
 
-            <h1>Our Team</h1>
+            <h1>Equipe</h1>
 
             <p>
                 ANN Joohyun, fondatrice de l'entreprise et développeuse web
-                <a href="https://fr.linkedin.com/in/hassen-ayouni-b380961a3"  target="_blank">
+                <a href="https://fr.linkedin.com/in/joohyun-ann"  target="_blank">
                     <i class="fa fa-linkedin-square fa-2x"> </i>
                 </a>
 
                 <br>
 
                 AYOUNI Hassen Développeur web
-                <a href="https://www.linkedin.com/in/islam-elshobokshy/" target='_blank'>
+                <a href="https://www.linkedin.com/in/hassen-ayouni-b380961a3/?originalSubdomain=fr" target='_blank'>
                     <i class="fa fa-linkedin-square fa-2x"></i>
                 </a>
 
@@ -35,7 +35,7 @@
 
                 CAILLER Dylan Développeur web
 
-                <a href="https://www.linkedin.com/in/islam-elshobokshy/" target='_blank'>
+                <a href="https://www.linkedin.com/in/dylan-cailler-997913201/" target='_blank'>
                     <i class="fa fa-linkedin-square fa-2x"></i>
                 </a>
 
@@ -43,7 +43,7 @@
 
                 DAGO Annie Développeuse web
 
-                <a href="https://www.linkedin.com/in/islam-elshobokshy/" target='_blank'>
+                <a href="https://www.linkedin.com/in/Annie-dago/" target='_blank'>
                     <i class="fa fa-linkedin-square fa-2x"></i>
                 </a>
 
@@ -51,7 +51,7 @@
 
                 LIU Tong Développeuse web
 
-                <a href="https://www.linkedin.com/in/islam-elshobokshy/" target='_blank'>
+                <a href="https://www.linkedin.com/in/tong-liu/" target='_blank'>
                     <i class="fa fa-linkedin-square fa-2x"></i>
                 </a>
                 <br>
@@ -77,8 +77,8 @@
                 <i class="lik"></i>
             </div>
             <div class="top2">
-                <h6>université ut1 Captiole </h6>
-                <p><a href="https://www.ut-capitole.fr/" target='_blank'> Ut1 capitole </a></p>
+                <h6>Université ut1 Captiole </h6>
+                <p><a href="https://www.ut-capitole.fr/" target='_blank'> UT1 capitole </a></p>
             </div>
         </div>
 

@@ -28,7 +28,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="statut">  Type Utilisateur* </label><br/>
+                                                <label for="statut">  Statut* </label><br/>
                                                 <select name="typeuser" id="typeuser" class="form-control">
                                                     <option value="etudiant" >Etudiant</option>
                                                     <option value="professeur">Professeur</option>
@@ -53,7 +53,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="name">Nom * </label><br/>
-                                                <small> For testing purposes, username is : admin</small>
+                                                <small></small>
                                                 <input id="username" type="text" name="username" class="form-control"placeholder="Veuillez entrer votre nom" required="required" data-error="Username is required.">
                                                 <div class="help-block with-errors"></div>
                                             </div>

@@ -40,14 +40,14 @@
                     <div class="messages"></div>
 
                     <div class="controls">
-						
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="title">Title * </label>
                                     <input id="title" type="text" name="title" class="form-control" value='<?=$this->post->title?>' required="required" data-error="Le titre est demandé">
                                     <div class="help-block with-errors"></div>
-									<small> Titre ne doit pas contenir plus de 50 charactères.</small>
+									<small> Le titre ne doit pas contenir plus de 50 caractères.</small>
                                 </div>
                             </div>
 						</div>
@@ -55,7 +55,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="category">Categorie *</label>
+                                    <label for="category">Catégorie *</label>
                                     <?php if ($this->post->category =="Administratif") : ?>
                                         <select name="category" id="category">
                                             <option value="Administratif" selected>Administratif</option>
@@ -90,7 +90,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="username">Username *</label>
+                                    <label for="username">Nom *</label>
                                     <input id="id_user" type="hidden" name="id_user" class="form-control" placeholder="<?php echo $id_user ; ?>">
                                     <input id="username" type="text" name="$username" class="form-control" placeholder="<?php echo $username ; ?>" readonly>
                                     <div class="help-block with-errors"></div>
@@ -117,7 +117,7 @@
                     </div>
 
                 </form>
-						
+
 				<?php endif ?>
 
             </div>
@@ -126,6 +126,6 @@
 	 </div>
 	</div>
 </div>
-<!-- content -->	
+<!-- content -->
 
 <?php require_once 'shared/footer.php' ?>

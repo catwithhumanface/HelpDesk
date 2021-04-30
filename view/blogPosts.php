@@ -45,7 +45,7 @@ if(isset($_SESSION['type_user'])){
 <div class="content">
     <ul class ="pagination" style="margin-left:400px;">
         <li class="page-item <?= ($category == "all") ?  "active" : "" ?> ">
-            <a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;category=all" class="page-link">All</a>
+            <a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;category=all" class="page-link">Tout</a>
             </li>
         <li class="page-item <?= ($category == "Administratif") ?  "active" : "" ?> ">
             <a href="<?=ROOT_URL?>?p=blogController&amp;a=blogPosts&amp;category=Administratif" class="page-link">Administratif</a>
@@ -72,7 +72,7 @@ if(isset($_SESSION['type_user'])){
                                         <?php if(!empty($_SESSION['active'])) : ?>
 										    <h2><button type="button" onclick="window.location='<?=ROOT_URL?>?p=blogController&amp;a=add'" class="bold addFirstPost">Créer un nouveau ticket</button></h2>
                                         <?php elseif(empty($_SESSION['active'])) : ?>
-                                            <h2 class="addFirstPost">Veuillez <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">se connecter</a> pour ajouter un ticket</h2>
+                                            <h2 class="addFirstPost">Veuillez <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">vous connecter</a> pour ajouter un ticket</h2>
                                         <?php endif ?>
                                     </div>
 								</div>
@@ -89,9 +89,9 @@ if(isset($_SESSION['type_user'])){
                                     <div class="l_g_r">
                                         <div class="dapibus">
                                             <p style="color:darkblue; font-size:14pt">TITRE : <a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>"><?=htmlspecialchars($post->title)?></a></p>
-                                            <p class="adm">Category : <?=$post->category?> | <?=$post->creation_date?></p>
-                                            <a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>" class="link">Regarder plus</a>
-                                            <!-- If user is not logged in -->
+                                            <p class="adm">Catégorie : <?=$post->category?> | <?=$post->creation_date?></p>
+                                            <a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>" class="link">Lire plus</a>
+                                            <!-- Vérifier si c'est bien l'utilisateur -->
                                             <?php if(!empty($_SESSION['active'])) : ?>
                                             <?php if ($post->id_user == $id_user): ?>
                                                 <a href="<?=ROOT_URL?>?p=blogController&amp;a=edit&amp;id=<?=$post->id?>" class="link">Modifier</a>
@@ -99,7 +99,7 @@ if(isset($_SESSION['type_user'])){
                                                         Supprimer</a>
                                             <?php endif ?>
                                             <?php elseif(empty($_SESSION['active'])) : ?>
-                                                <p class="addFirstPost">Veuillez <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">se connecter</a> pour modifier ou supprimer votre ticket</p>
+                                                <p class="addFirstPost">Veuillez <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">vous connecter</a> pour modifier ou supprimer votre ticket</p>
                                             <?php endif ?>
 											</div>
 										</div>

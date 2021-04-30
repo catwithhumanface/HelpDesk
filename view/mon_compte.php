@@ -103,16 +103,16 @@
 	                                            <h2><a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>"><?=htmlspecialchars($post->title)?></a></h2>
 	                                            <br/>
 	                                            <p class="adm">Category : <?=$post->category?> | <?=$post->creation_date?></p>
-	                                            <a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>" class="link">Read More</a>
+	                                            <a href="<?=ROOT_URL?>?p=blogController&amp;a=post&amp;id=<?=$post->id?>" class="link">Lire plus</a>
 	                                            <?php if ($post->id_user == $id_user): ?>
-	                                                <a href="<?=ROOT_URL?>?p=blogController&amp;a=edit&amp;id=<?=$post->id?>" class="link">Edit</a>
+	                                                <a href="<?=ROOT_URL?>?p=blogController&amp;a=edit&amp;id=<?=$post->id?>" class="link">Modifier</a>
 	                                                <form name="delete" action="<?=ROOT_URL?>?p=blogController&amp;a=delete&amp;id=<?=$post->id?>" method="post" class="link">
 	                                                    <button type="submit" name="delete" value="1" class="bold">
-	                                                        Delete
+	                                                        Supprimer
 	                                                    </button>
                                                 </form>
                                                 <?php elseif(empty($_SESSION['active'])) : ?>
-                                                        <p class="addFirstPost">Please <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">login</a> to edit/delete.</p>
+                                                        <p class="addFirstPost">Veuillez <a href="<?=ROOT_URL?>?p=blogController&amp;a=login">vous connecter</a> pour modifier/supprimer.</p>
 	                                            <?php endif ?>
 
 												</div>
