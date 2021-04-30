@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- 생성 시간: 21-04-29 23:16
+-- 생성 시간: 21-04-30 12:52
 -- 서버 버전: 5.7.31
 -- PHP 버전: 7.3.21
 
@@ -24,23 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 테이블 구조 `posts`
---
-
-DROP TABLE IF EXISTS `posts`;
-CREATE TABLE IF NOT EXISTS `posts` (
-    `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `title` varchar(255) DEFAULT NULL,
-    `small_desc` text NOT NULL,
-    `content` longtext NOT NULL,
-    `author` varchar(255) NOT NULL,
-    `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- 테이블 구조 `reponse`
 --
 
@@ -53,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `reponse` (
     `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_reponse`),
     KEY `fk_id_tiket` (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+    ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- 테이블의 덤프 데이터 `reponse`
@@ -69,7 +52,8 @@ INSERT INTO `reponse` (`id_reponse`, `content`, `id_user`, `id`, `creation_date`
 (7, '222222 222', 7, 5, '2021-04-29 02:44:54'),
 (8, '111 11111', 7, 9, '2021-04-30 06:54:34'),
 (9, '111 11111', 7, 9, '2021-04-30 06:55:46'),
-(10, '111 11111', 7, 9, '2021-04-30 06:56:19');
+(10, '111 11111', 7, 9, '2021-04-30 06:56:19'),
+(11, 'dd dddd', 7, 11, '2021-04-30 21:51:24');
 
 -- --------------------------------------------------------
 
@@ -88,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `ticket` (
     `statusT` varchar(255) DEFAULT 'en cours',
     PRIMARY KEY (`id`),
     KEY `fk_id_user` (`id_user`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+    ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
